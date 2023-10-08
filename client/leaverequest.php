@@ -1,8 +1,9 @@
 <?php
 echo "<link rel = 'stylesheet' href= 'style.css'>";
 echo "<link rel = 'stylesheet' href= 'table.css'>";
+echo "<script type = 'text/javascript' src = 'JQuery.js'></script>";
 echo "<center>";
-echo "<div class = 'textview'>";
+echo "<div class = 'textview' >";
 include 'connect.php';
 echo "<h1>Leave Management System</h1>";
 include 'clientnavi.php';
@@ -19,7 +20,7 @@ if(isset($_SESSION['user']))
 			{
 			echo "<body>";
 			echo "<h2>Request For A Leave for : ".$_POST['type']."</h2>";
-			echo "<form action = 'request_confirm.php' method = 'post'>";
+			echo "<form action = 'request_confirm.php' method = 'post' >";
 			echo "<table>";
 			echo "<input type = 'hidden' name = 'empname' value = '".$row["EmpName"]."'>";
 			echo "<input type = 'hidden' name = 'designation' value = '".$row["Designation"]."'>";
@@ -140,68 +141,66 @@ if(isset($_SESSION['user']))
 			echo "<tr><th> * No Of Leave Days : </th><td><input type = 'number' min = '1' name = 'leavedays' class = 'textbox shadow selected' step = '1'></td></tr>";
 			echo "<tr><th> * Resaon For Leave : </th><td><input type = 'text' name = 'leavereason' class = 'textbox shadow selected'></td></tr>";
 			echo "<input type = 'file' accept = '.doc , .pdf , .docx' name = 'application' id = 'application'>";
-			echo "<table>
-					<tr>
-					<th>Date </th>
-					<th>Period</th>		
-					<th>Semester</th>
-					<th>Branch</th>
-					<th>Room No.</th>
-					<th>Subject</th>
-					<th>Staff  Member Who Will Engage Class</th>
-					</tr>
+			
+			
+			
+			
+			// echo "<br/><tr><td><input type = 'submit' value = 'Request a Leave' class = 'login-button shadow'></td></tr>";
+			echo "</table>";
+			
+			echo"<div >
+			<span class = 'textbox shadow selected' style = 'border:0px;'>Number of engagement you want to make</span>
+			<input type = 'number' class = 'textbox shadow selected' name ='number' id = 'nvalue'>
+			<span class = 'textbox shadow selected' name = 'submit1' id ='btn'>Click Me</span>
+			</div>";
+
+    		echo"<div id = 'division' >
+			
+			</div>";
+
+			echo"<script>
+			$('#btn').click(function(){
+			console.log('i am in my function');
+			var n = $('#nvalue').val();
+			if (n>0){
+				$('#division').html(`<table>
+				<tr>
+				<th>Date </th>
+				<th>Day</th>
+				<th>Period</th>		
+				<th>Semester</th>
+				<th>Branch</th>
+				<th>Subject</th>
+				<th>Engaged by faculty Name</th>
+				</tr>
+				</table>`);
+			
+		
+				for(var i = 0; i < n; i++){
+					$('#division').append(`<table> 
 					<tr>
 					<td><input type = 'text' name = 'value1' class = 'textbox shadow selected' style='width:90px;'></td>
-					<td><input type='text' name = 'value2' class = 'textbox shadow selected' style='width:100px;'></td>		
+					<td><input type='text' name = 'value6' class = 'textbox shadow selected' style='width:100px;'></td>
+					<td><input type='text' name = 'value2' class = 'textbox shadow selected' style='width:50px;'></td>		
 					<td><input type='number' min = '1' max = '8' step = '1' name = 'value3' class = 'textbox shadow selected' style='width:40px;'></td>
 					<td><input type='text' name = 'value4' class = 'textbox shadow selected' style='width:50px;'></td>
 					<td><input type='text' name = 'value5' class = 'textbox shadow selected' style='width:100px;'></td>
-					<td><input type='text' name = 'value6' class = 'textbox shadow selected' style='width:50px;'></td>
-					<td><input type='text' name = 'value7' class = 'textbox shadow selected' style='width:50px;'></td>
-					</tr>
-					<tr>
-					<td><input type = 'text' name = 'value8' class = 'textbox shadow selected' style='width:90px;'></td>
-					<td><input type='text' name = 'value9' class = 'textbox shadow selected' style='width:100px;'></td>		
-					<td><input type='number' min = '1' max = '8' step = '1' name = 'value10' class = 'textbox shadow selected' style='width:40px;'></td>
-					<td><input type='text' name = 'value11' class = 'textbox shadow selected' style='width:50px;'></td>
-					<td><input type='text' name = 'value12' class = 'textbox shadow selected' style='width:100px;'></td>
-					<td><input type='text' name = 'value13' class = 'textbox shadow selected' style='width:50px;'></td>
-					<td><input type='text' name = 'value14' class = 'textbox shadow selected' style='width:50px;'></td>
-					</tr>
-					<tr>
-					<td><input type = 'text' name = 'value15' class = 'textbox shadow selected' style='width:90px;'></td>
-					<td><input type='text' name = 'value16' class = 'textbox shadow selected' style='width:100px;'></td>		
-					<td><input type='number' min = '1' max = '8' step = '1' name = 'value17' class = 'textbox shadow selected' style='width:40px;'></td>
-					<td><input type='text' name = 'value18' class = 'textbox shadow selected' style='width:50px;'></td>
-					<td><input type='text' name = 'value19' class = 'textbox shadow selected' style='width:100px;'></td>
-					<td><input type='text' name = 'value20' class = 'textbox shadow selected' style='width:50px;'></td>
-					<td><input type='text' name = 'value21' class = 'textbox shadow selected' style='width:50px;'></td>
-					</tr>
-					<tr>
-					<td><input type = 'text' name = 'value22' class = 'textbox shadow selected' style='width:90px;'></td>
-					<td><input type='text' name = 'value23' class = 'textbox shadow selected' style='width:100px;'></td>		
-					<td><input type='number' min = '1' max = '8' step = '1' name = 'value24' class = 'textbox shadow selected' style='width:40px;'></td>
-					<td><input type='text' name = 'value25' class = 'textbox shadow selected' style='width:50px;'></td>
-					<td><input type='text' name = 'value26' class = 'textbox shadow selected' style='width:100px;'></td>
-					<td><input type='text' name = 'value28' class = 'textbox shadow selected' style='width:50px;'></td>
-					<td><input type='text' name = 'value29' class = 'textbox shadow selected' style='width:50px;'></td>
-					</tr>
-					<tr>
-					<td><input type = 'text' name = 'value30' class = 'textbox shadow selected' style='width:90px;'></td>
-					<td><input type='text' name = 'value31' class = 'textbox shadow selected' style='width:100px;'></td>		
-					<td><input type='number' min = '1' max = '8' step = '1' name = 'value32' class = 'textbox shadow selected' style='width:40px;'></td>
-					<td><input type='text' name = 'value33' class = 'textbox shadow selected' style='width:50px;'></td>
-					<td><input type='text' name = 'value34' class = 'textbox shadow selected' style='width:100px;'></td>
-					<td><input type='text' name = 'value35' class = 'textbox shadow selected' style='width:50px;'></td>
-					<td><input type='text' name = 'value36' class = 'textbox shadow selected' style='width:50px;'></td>
-					</tr>
-					</font>
-					</table>";
-			echo "<br/><tr><td><input type = 'submit' value = 'Request a Leave' class = 'login-button shadow'></td></tr>";
-			echo "</form>";
-			echo "</div>";
-			echo "</center>";
-			echo "</body>";
+					
+					<td><input type='text' name = 'value7' class = 'textbox shadow selected' style='width:110px;'></td>
+					</tr>`);
+				}
+				$('#division').append('</table>');
+			}
+		
+		});
+		</script>";
+		echo "<br/><tr><td><input type = 'submit' value = 'Request a Leave' class = 'login-button shadow'></td></tr>";
+		echo "</form>";
+		echo "</div>";
+		echo "</center>";
+		echo "</body>";	
+			
+			
 			}
 		}
 	}
