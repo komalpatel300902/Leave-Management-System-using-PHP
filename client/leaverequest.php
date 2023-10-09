@@ -174,19 +174,19 @@ if(isset($_SESSION['user']))
 				<th>Engaged by faculty Name</th>
 				</tr>
 				</table>`);
-			
-		
+				var j = 0;
 				for(var i = 0; i < n; i++){
+					
 					$('#division').append(`<table> 
 					<tr>
-					<td><input type = 'text' name = 'value1' class = 'textbox shadow selected' style='width:90px;'></td>
-					<td><input type='text' name = 'value6' class = 'textbox shadow selected' style='width:100px;'></td>
-					<td><input type='text' name = 'value2' class = 'textbox shadow selected' style='width:50px;'></td>		
-					<td><input type='number' min = '1' max = '8' step = '1' name = 'value3' class = 'textbox shadow selected' style='width:40px;'></td>
-					<td><input type='text' name = 'value4' class = 'textbox shadow selected' style='width:50px;'></td>
-					<td><input type='text' name = 'value5' class = 'textbox shadow selected' style='width:100px;'></td>
+					<td><input type = 'text' name = 'value`+ ++j +`' class = 'textbox shadow selected' style='width:90px;'></td>
+					<td><input type='text' name = 'value`+ ++j +`' class = 'textbox shadow selected' style='width:100px;'></td>
+					<td><input type='text' name = 'value`+ ++j +`' class = 'textbox shadow selected' style='width:50px;'></td>		
+					<td><input type='number' min = '1' max = '8' step = '1' name = 'value`+ ++j +`' class = 'textbox shadow selected' style='width:40px;'></td>
+					<td><input type='text' name = 'value`+ ++j +`' class = 'textbox shadow selected' style='width:50px;'></td>
+					<td><input type='text' name = 'value`+ ++j +`' class = 'textbox shadow selected' style='width:100px;'></td>
 					
-					<td><input type='text' name = 'value7' class = 'textbox shadow selected' style='width:110px;'></td>
+					<td><input type='text' name = 'value`+ ++j +`' class = 'textbox shadow selected' style='width:110px;'></td>
 					</tr>`);
 				}
 				$('#division').append('</table>');
