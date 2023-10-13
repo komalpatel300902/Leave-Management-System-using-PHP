@@ -20,7 +20,7 @@ if(isset($_SESSION['user']))
 			{
 			echo "<body>";
 			echo "<h2>Request For A Leave for : ".$_POST['type']."</h2>";
-			echo "<form action = 'request_confirm.php' method = 'post' >";
+			echo "<form action = 'request_confirm.php' method = 'post' id = 'myform'>";
 			echo "<table>";
 			echo "<input type = 'hidden' name = 'empname' value = '".$row["EmpName"]."'>";
 			echo "<input type = 'hidden' name = 'designation' value = '".$row["Designation"]."'>";
@@ -84,7 +84,7 @@ if(isset($_SESSION['user']))
 					</tr>";
 					echo "<tr><th> * End Date : </th>
 					<td>
-					<select name = 'end leavedate' class = 'end textbox shadow selected' style='width:50px;'>
+					<select name = 'endleavedate' class = 'end textbox shadow selected' style='width:50px;'>
 						<option value = '01'>1</option>
 						<option value = '02'>2</option>
 						<option value = '03'>3</option>
@@ -117,7 +117,7 @@ if(isset($_SESSION['user']))
 						<option value = '30'>30</option>
 						<option value = '31'>31</option>
 					</select>
-					<select name = 'end leavemonth' class = 'end textbox shadow selected'>
+					<select name = 'endleavemonth' class = 'end textbox shadow selected'>
 						<option value = '01'>1</option>
 						<option value = '02'>2</option>
 						<option value = '03'>3</option>
@@ -131,7 +131,7 @@ if(isset($_SESSION['user']))
 						<option value = '11'>11</option>
 						<option value = '12'>12</option>
 					</select>
-					<select name = 'end leaveyear' class = 'end textbox shadow selected'>
+					<select name = 'endleaveyear' class = 'end textbox shadow selected'>
 						<option value = '".date("Y")."'>".date("Y")."</option>
 					</select>
 					</td>
@@ -150,7 +150,7 @@ if(isset($_SESSION['user']))
 			
 			echo"<div >
 			<span class = 'textbox shadow selected' style = 'border:0px;'>Number of engagement you want to make</span>
-			<input type = 'number' class = 'textbox shadow selected' name ='number' id = 'nvalue'>
+			<input type = 'number' class = 'textbox shadow selected' name ='rownumber' id = 'nvalue'>
 			<span class = 'textbox shadow selected' name = 'submit1' id ='btn'>Click Me</span>
 			</div>";
 
@@ -162,6 +162,12 @@ if(isset($_SESSION['user']))
 			$('#btn').click(function(){
 			console.log('i am in my function');
 			var n = $('#nvalue').val();
+
+			if(n==0){
+				$('#division').html(``);
+			}
+
+			
 			if (n>0){
 				$('#division').html(`<table>
 				<tr>
@@ -194,6 +200,26 @@ if(isset($_SESSION['user']))
 		
 		});
 		</script>";
+
+
+		echo "<script>
+			const form = document.getElementById('myform');
+			form.addEventListener('keypress',function(e){
+				if(e.keyCode === 13){
+					e.preventDefault();
+
+				}
+			});
+
+			const rows = document.getElementById('nvalue');
+			form.addEventListener('keypress',function(e){
+				if(e.keyCode === 13){
+					document.getElementById('btn').click();
+
+				}
+			});
+		</script>
+		";
 		echo "<br/><tr><td><input type = 'submit' value = 'Request a Leave' class = 'login-button shadow'></td></tr>";
 		echo "</form>";
 		echo "</div>";
