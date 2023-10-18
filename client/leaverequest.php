@@ -20,7 +20,7 @@ if(isset($_SESSION['user']))
 			{
 			echo "<body>";
 			echo "<h2>Request For A Leave for : ".$_POST['type']."</h2>";
-			echo "<form action = 'request_confirm.php' method = 'post' id = 'myform'>";
+			echo "<form action = 'request_confirm.php' method = 'post' id = 'myform' enctype='multipart/form-data'>";
 			echo "<table>";
 			echo "<input type = 'hidden' name = 'empname' value = '".$row["EmpName"]."'>";
 			echo "<input type = 'hidden' name = 'designation' value = '".$row["Designation"]."'>";

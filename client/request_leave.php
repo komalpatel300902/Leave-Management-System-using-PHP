@@ -45,6 +45,15 @@ if(isset($_SESSION['user']))
 					{
 						echo "<button type = 'submit' name = 'type' value = 'Casual Leave' class = 'error-button shadow' disabled>Casual Leave</button>";
 					}
+					echo "<br><br>";
+					echo "<button type = 'submit' name = 'type' value = 'Maternity Leave' class = 'error-button shadow' disabled>Maternity Leave</button>";
+					echo "<button type = 'submit' name = 'type' value = 'Compassionate Leave' class = 'error-button shadow' disabled>Compassionate Leave</button>";
+					echo "<button type = 'submit' name = 'type' value = 'Nursing Leave' class = 'error-button shadow' disabled>Nursing Leave</button>";
+
+					echo "<br><br>";
+					
+					echo "<button type = 'submit' name = 'type' value = 'Study Leave' class = 'error-button shadow' disabled>Study Leave</button>";
+					
 				}
 		}
 	echo "</form>";

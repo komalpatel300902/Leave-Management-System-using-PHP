@@ -26,7 +26,7 @@ if(isset($_SESSION['adminuser']))
 			if($_SESSION['adminuser'] == $row['username'])
 				{
 				
-				$sql2 = "SELECT e.Id,e.Dept,e.EmpName,el.EmpName,el.LeaveType,el.RequestDate,el.LeaveDays,el.StartDate,el.EndDate,el.id,el.Dept FROM employees e, emp_leaves el WHERE e.Dept = el.Dept AND e.Dept = '".$row['Dept']."' AND el.Status = 'Requested' AND e.EmpName = el.EmpName";
+				$sql2 = "SELECT e.UserName,e.Id,e.Dept,e.EmpName,el.EmpName,el.LeaveType,el.RequestDate,el.LeaveDays,el.StartDate,el.EndDate,el.id,el.Dept FROM employees e, emp_leaves el WHERE e.Dept = el.Dept AND e.Dept = '".$row['Dept']."' AND el.Status = 'Requested' AND e.EmpName = el.EmpName";
 				$result2 = $conn->query($sql2);
 				if($result2->num_rows > 0)
 					{
@@ -38,6 +38,7 @@ if(isset($_SESSION['adminuser']))
 						echo "<th>Leave Days</th>";
 						echo "<th>Starting Date</th>";
 						echo "<th>Ending Date</th>";
+						echo "<th>Documents</th>";
 						echo "<th>Action</th>";
 						echo "</tr>";
 						while ($row2 = $result2->fetch_assoc())
@@ -61,6 +62,20 @@ if(isset($_SESSION['adminuser']))
 							echo "<td>";
 							echo $row2['EndDate'];
 							echo "</td>";
+							if (file_exists("../client/leaves/".$row2['UserName'].$row2["StartDate"].$row2["LeaveType"].$row2["EndDate"].".pdf")){
+								echo "<td><a href = '../client/leaves/".$row2['UserName'].$row2["StartDate"].$row2["LeaveType"].$row2["EndDate"].".pdf'>Engagements</a>";
+							}
+							else{
+								echo "<td><a href = '#'>Engagements</a>";
+							}
+							echo "<br>";
+							if(file_exists("../client/applications/".$row2['UserName'].$row2["StartDate"].".pdf")){
+								echo "<a href = '../client/applications/".$row2['UserName'].$row2["StartDate"].".pdf'>Application</a></td>";
+							}
+							else{
+								echo "<a href = '#'>Application</a></td>";
+							}
+							
 							echo "<td><a href = 'acceptleave.php?id=".$row2['id']."&empid=".$row2["Id"]."'>Accept</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href = 'rejectleave.php?id=".$row2['id']."&empid=".$row2["Id"]."'>Reject</a></td>";
 							echo "</tr>";
 							$count++;
