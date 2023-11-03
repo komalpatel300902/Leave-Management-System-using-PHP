@@ -25,7 +25,7 @@ footer {
 <div class="heading"><h1>Leave Management System</h1></div>
 <?php include 'navi.php';?>
 <div class="heading"><h2>Welcome !</h2>
-<p>A Small Leave Management System, fully created in php</p>
+<p>Leave Management System</p>
 <p> A Project for Minors </p>
 <footer>&copy; 2023</footer>
 </center>
