@@ -22,7 +22,12 @@ include 'mailer.php';
 // 			$row = $result->fetch_assoc();
 // 			$dept = $row["Dept"];
 // 		}
-include '../../navi.php';
+include '../navi.php';
+
+if(isset($_GET['err']))
+	{
+		echo "<div class = 'error'><b><u>".htmlspecialchars($_GET['err'])."</u></b></div>";
+	}
 $errmsg = $sql = "";
 $empname = trim($_POST['empname']);
 $uname = trim($_POST['uname']);
@@ -98,7 +103,7 @@ if($conn->query($sql2) == TRUE)
 	}
 if(!empty($errmsg))
 	{
-	header('location:index.php?err='.htmlspecialchars(urlencode($errmsg)));
+	header('location:../ ../register_as_employee.php?err='.htmlspecialchars(urlencode($errmsg)));
 	}
 else
 	{

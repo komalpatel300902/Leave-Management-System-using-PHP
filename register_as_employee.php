@@ -51,10 +51,10 @@ if(TRUE)
 </center>
 </div>";
 	}
-	else
-	{
-		header('location:index.php?err='.urlencode('Please Login First To Access This Page !'));
-	}
+	// else
+	// {
+	// 	header('location:index.php?err='.urlencode('Please Login First To Access This Page !'));
+	// }
 
 	echo "<script>
 			const form = document.getElementById('myform');

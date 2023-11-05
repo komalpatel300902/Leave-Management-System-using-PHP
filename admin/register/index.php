@@ -1,52 +1,93 @@
-<link rel="shortcut icon" type="image/png" href="favicon.png"/>
 <?php
 session_start();
 ?>
-<html>
-<head>
 <title>::Leave Management::</title>
-<link rel="stylesheet" href="style.css">
-
-</head>
-<body>
-<div class="reg-form">
+<link rel="stylesheet" type="text/css" href="../style.css">
+<link rel="shortcut icon" type="image/png" href="favicon.png"/>
+<link rel="stylesheet" type="text/css" href="../table.css">
+<div class = "textview">
 <center>
-<h1>Leave Management System</h1>
 <?php
-include 'adminnavi.php';?>
-<h2>New Employee Registration</h2>
-<i><div class = 'error'>*indicates mandatory fields</div></i>
-<?php
-if(isset($_GET['err']))
-	{
-		echo "<div class = 'error'><b><u>".htmlspecialchars($_GET['err'])."</u></b></div>";
-	}
+
+
+include 'connect.php';
+echo "<h1>Leave Management System</h1>";
+include 'adminnavi.php';
+echo "<h2> Employee's Joining Request</h2>";
+$count = 0;
 if(isset($_SESSION['adminuser']))
 	{
-	echo"<form action = 'confirm.php' method = 'post'>
-	<table>
-	<tr><td><div class = 'error'>*</div> Employee Name : </td><td><input type = 'text' name = 'empname' class = 'reg-form-fields shadow selected' placeholder = 'Employee Name'></td></tr><br>
-<tr><td><div class = 'error'>*</div> Username : </td><td><input type = 'text' name = 'uname' class = 'reg-form-fields shadow selected' placeholder = 'Employee Username'></td></tr><br>
-<tr><td><div class = 'error'>*</div> Date of joining (dd/mm/yyyy): <td><input type = 'number' name = 'date-join' min = '1' max = '31' class = 'date-of-joining shadow selected' step = '1' placeholder = 'dd' style='width:50px;'><input type = 'number' name = 'month-join' min = '1' max = '12' class = 'date-of-joining shadow selected' step = '1' placeholder = 'mm' style='width:50px;'><input type = 'number' name = 'year-join' min = '1985' max = '".date('Y')."' class = 'date-of-joining shadow selected' step = '1' placeholder = 'yyyy' style='width:100px;'></td></tr><br>
-<tr><td><div class = 'error'>*</div> Date of birth (dd/mm/yyyy): <td><input type = 'number' name = 'date-birth' min = '1' max = '31' class = 'date-of-joining shadow selected' step = '1' placeholder = 'dd' style='width:50px;'><input type = 'number' name = 'month-birth' min = '1' max = '12' class = 'date-of-joining shadow selected' step = '1' placeholder = 'mm' style='width:50px;'><input type = 'number' name = 'year-birth' min = '1901' max = '".date('Y')."' class = 'date-of-joining shadow selected' step = '1' placeholder = 'yyyy' style='width:100px;'></td></tr><br>
-<tr><td><div class = 'error'>*</div> Employee email id : </td><td><input type = 'text' name = 'mailid' class = 'reg-form-fields shadow selected' placeholder = 'Employee Email ID'></td></tr><br>
-<tr><td><div class = 'error'>*</div> Designation : </td><td><input type = 'text' name = 'designation' class = 'reg-form-fields shadow selected' placeholder = 'Employee Designation'></td></tr><br>
-<tr><td><div class = 'error'>*</div> Employment Type : </td><td><select name = 'factype' class = 'reg-form-fields shadow selected'>
-						<option>Permanent</option><option>Ad-hoc</option><option>Fix</option>
-				  </select>
-				  <select name = 'facfee' class = 'reg-form-fields shadow selected'>
-						<option>Grant In Aid</option><option>Self Finance</option>
-				  </select></td></tr><br>
-<tr><td><input type = 'submit' value = 'Register' class = 'registration shadow'></td></tr>
-</form>
-</table>
-</center>
-</div>";
+	$sql = "SELECT Dept, username FROM admins WHERE username = '".$_SESSION['adminuser']."'";
+	$result = $conn->query($sql);
+	if($result->num_rows > 0)
+		{
+		while($row = $result->fetch_assoc())
+			{
+			if($_SESSION['adminuser'] == $row['username'])
+				{
+				
+				$sql2 = "SELECT e.UserName,e.Id,e.Dept,e.EmpName,e.EmpEmail , e.Designation FROM joining_request e WHERE e.Dept = '".$row['Dept']."'";
+				$result2 = $conn->query($sql2);
+				if($result2->num_rows > 0)
+					{
+						echo "<table>";
+						echo "<tr>";
+						echo "<th>Employee Name</th>";
+						echo "<th>Email id</th>";
+						echo "<th>Designation</th>";
+						echo "<th>Department</th>";
+						// echo "<th>Starting Date</th>";
+						// echo "<th>Ending Date</th>";
+						echo "<th>Documents</th>";
+						echo "<th>Action</th>";
+						echo "</tr>";
+						while ($row2 = $result2->fetch_assoc())
+							{
+							echo "<tr>";
+							echo "<td>";
+							echo $row2['EmpName'];
+							echo "</td>";
+							echo "<td>";
+							echo $row2['EmpEmail'];
+							echo "</td>";
+							echo "<td>";
+							echo $row2['Designation'];
+							echo "</td>";
+							echo "<td>";
+							echo $row2['Dept'];
+							echo "</td>";
+							// echo "<td>";
+							// echo $row2['StartDate'];
+							// echo "</td>";
+							// echo "<td>";
+							// echo $row2['EndDate'];
+							// echo "</td>";
+							if (file_exists("joining_request/".$row2['UserName']."_".$row2["EmpEmail"].".pdf")){
+								echo "<td><a href = 'joining_request/".$row2['UserName']."_".$row2["EmpEmail"].".pdf' target = '_blank'>see applicant</a></td>";
+							}
+							else{
+								echo "<td><a href = '#'>see application</a></td>";
+							}
+													
+							echo "<td><a href = 'accept_request.php'>Accept</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href = 'rejectrequest.php'>Reject</a></td>";
+							echo "</tr>";
+							$count++;
+							}
+						echo $count." Leave(s)";
+					}
+				echo "</table>";
+				}
+			else
+				{
+				header("location:index.php?err=".urlencode('Please login first to view this page !'));
+				}
+			}
+		}
 	}
-	else
+else
 	{
-		header('location:../index.php?err='.urlencode('Please Login First To Access This Page !'));
+	header('location:index.php?err='.urlencode('Please login first to view this page !'));
 	}
 ?>
-</body>
-</html>
+</div>
+</center>

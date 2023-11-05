@@ -99,6 +99,7 @@ li.dropdown {
     </div>
   </li>
   <li><a href="../about.php">About</a></li>
+  <li><a href="../register_as_employee.php">Register as Employee</a></li>
 </ul>
 </body>
 </html>
