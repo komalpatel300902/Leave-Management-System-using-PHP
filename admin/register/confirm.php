@@ -22,7 +22,7 @@ include 'mailer.php';
 // 			$row = $result->fetch_assoc();
 // 			$dept = $row["Dept"];
 // 		}
-include '../navi.php';
+include 'navi.php';
 
 if(isset($_GET['err']))
 	{
@@ -135,7 +135,7 @@ else
 		else {
 			echo "Error: " . $sql . "<br>" . $conn->error;
 				}
-
+		
 		$dompdf = new Dompdf();
   
 		$pdf_content='
@@ -168,8 +168,11 @@ else
 		</div>
 		<div id="pdf_container" >
 		<table border="0" cellspacing="1" cellpadding="2">
-		<tr bgcolor="#3c4142" style="color:#FFF"><td colspan="3" align="left">Request for Joining GECR'.$empname.'</td></tr>
+		<tr bgcolor="#3c4142" style="color:#FFF"><td colspan="3" align="left">Request for Joining GECR : '.$empname.'</td></tr>
 			</table>
+		<table border="0" cellspacing="1" cellpadding="2">
+			<tr bgcolor="#3c4142" style="color:#FFF"><td colspan="3" align="left"><img src = "profile_picture/Male.png"></td></tr>
+				</table>
 		<table>
 		<tr><th>Employee Name : </th><td>'.$empname.'</td></tr>
 		<tr><th>Employee Designation : </th><td>'.$designation.'</td></tr>
@@ -177,7 +180,7 @@ else
 		<tr><th>Employee Department : </th><td>'.$dept.'</td></tr>
 		<tr><th>Type Of Leave : </th><td>'.$emptype.'</td></tr>
 		<tr><th>Employee Fee Structure : </th><td>'.$empfee.'</td></tr>
-		
+		<tr><th>Gender : </th><td>'.$gender.'</td></tr>
 		<br><br><br>
 		</table>
 		</div></body></html>'

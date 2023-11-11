@@ -69,7 +69,8 @@ if(isset($_SESSION['adminuser']))
 								echo "<td><a href = '#'>see application</a></td>";
 							}
 													
-							echo "<td><a href = 'accept_request.php'>Accept</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href = 'rejectrequest.php'>Reject</a></td>";
+							echo "<td><a href ='accept_request.php?id=".$row2['EmpEmail']."'>Accept</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+							echo " <a href = 'reject_request.php?id=".$row2['EmpEmail']."'>Reject</a></td>";
 							echo "</tr>";
 							$count++;
 							}

@@ -15,21 +15,23 @@ include 'adminnavi.php';
 include 'connect.php';
 include 'mailer.php';
 
-if(filter_var($_GET['EmpEmail'],FILTER_VALIDATE_INT) )
-	{
-		$id =$_GET['EmpEmail'];
-		// $empid =$_GET['empid'];
-	}
-else
-	{
-		header('location:home.php');
-	}
+// if(filter_var($_GET['EmpEmail'],FILTER_VALIDATE_INT) )
+// 	{
+// 		$id =$_GET['EmpEmail'];
+// 		// $empid =$_GET['empid'];
+// 	}
+// else
+// 	{
+// 		header('location:home.php');
+// 	}
+$id = $_GET['id'];
 if(isset($_SESSION['adminuser']))
 	{
 	
 	// $sql = "SELECT * FROM emp_leaves WHERE id='".$id."'";
 	$sql = "DELETE FROM JOINING_REQUEST WHERE EmpEmail = '".$id."'";
 	$result = $conn->query($sql);
+	header('location:index.php');
 	// if($result->num_rows > 0)
 	// 	{
 	// 	while($row = $result->fetch_assoc())

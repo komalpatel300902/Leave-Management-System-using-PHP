@@ -71,7 +71,8 @@ CREATE TABLE `employees` (
   `EmpFee` varchar(40) NOT NULL,
   `EmpType` varchar(40) NOT NULL,
   `UpdateStatus` date NOT NULL,
-  `DateOfBirth` date NOT NULL
+  `DateOfBirth` date NOT NULL,
+  `gender` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------

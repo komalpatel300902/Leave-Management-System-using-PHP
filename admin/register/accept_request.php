@@ -14,23 +14,26 @@ echo "<h1>Leave Management System</h1>";
 include 'adminnavi.php';
 include 'connect.php';
 include 'mailer.php';
-
-if(filter_var($_GET['EmpEmail'],FILTER_VALIDATE_INT))
-	{
-		$id =$_GET['EmpEmail'];
+$id =$_GET['id'];
+// if(filter_var($_GET['EmpEmail'],FILTER_VALIDATE_INT))
+// 	{
+// 		$id =$_GET['EmpEmail'];
 		
-	}
-else
-	{
-		header('location:home.php');
-	}
+// 	}
+// else
+// 	{
+// 		header('location:home.php');
+// 	}
 if(isset($_SESSION['adminuser']))
 	{
 	$sql = "INSERT INTO EMPLOYEES SELECT * FROM JOINING_REQUEST WHERE EmpEmail = '".$id."'";
 	// $sql = "SELECT id,EmpName,LeaveType,RequestDate,Status,LeaveDays,StartDate,EndDate FROM emp_leaves WHERE id='".$id."'";
 	$result = $conn->query($sql);
 	$sql2 = "DELETE FROM JOINING_REQUEST WHERE EmpEmail = '".$id."'";
-	$result = $conn->query($sql);
+	$result = $conn->query($sql2);
+
+	$conn->close();
+	header('location:index.php');
 	}
 	// if($result->num_rows > 0)
 	// 	{
