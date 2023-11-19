@@ -63,14 +63,14 @@ if(isset($_SESSION['adminuser']))
 							echo $row2['EndDate'];
 							echo "</td>";
 							if (file_exists("../client/leaves/".$row2['UserName'].$row2["StartDate"].$row2["LeaveType"].$row2["EndDate"].".pdf")){
-								echo "<td><a href = '../client/leaves/".$row2['UserName'].$row2["StartDate"].$row2["LeaveType"].$row2["EndDate"].".pdf'>Engagements</a>";
+								echo "<td><a href = '../client/leaves/".$row2['UserName'].$row2["StartDate"].$row2["LeaveType"].$row2["EndDate"].".pdf' target = '_blank'>Engagements</a>";
 							}
 							else{
 								echo "<td><a href = '#'>Engagements</a>";
 							}
 							echo "<br>";
 							if(file_exists("../client/applications/".$row2['UserName'].$row2["StartDate"].".pdf")){
-								echo "<a href = '../client/applications/".$row2['UserName'].$row2["StartDate"].".pdf'>Application</a></td>";
+								echo "<a href = '../client/applications/".$row2['UserName'].$row2["StartDate"].".pdf' target = '_blank'>Application</a></td>";
 							}
 							else{
 								echo "<a href = '#'>Application</a></td>";

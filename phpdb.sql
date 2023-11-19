@@ -33,7 +33,13 @@ CREATE TABLE `admins` (
   `Dept` varchar(50) NOT NULL,
   `SetSickLeave` int(11) NOT NULL DEFAULT '15',
   `SetCasualLeave` int(11) NOT NULL DEFAULT '10',
-  `SetEarnLeave` int(11) NOT NULL DEFAULT '30'
+  `SetEarnLeave` int(11) NOT NULL DEFAULT '30',
+  `SetCommutionLeave` int(11) NOT NULL DEFAULT '30',
+  `SetCompassionateLeave` int(11) NOT NULL DEFAULT '30',
+  `SetNursingLeave` int(11) NOT NULL DEFAULT '30',
+  `SetStudyLeave` int(11) NOT NULL DEFAULT '30',
+  `SetMaternityLeave` int(11) NOT NULL DEFAULT '30',
+  `email` varchar(50),
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -41,11 +47,11 @@ CREATE TABLE `admins` (
 --
 
 INSERT INTO `admins` (`id`, `username`, `password`, `Dept`, `SetSickLeave`, `SetCasualLeave`, `SetEarnLeave`) VALUES
-(1, 'ce_hod', '4e71ec6e6f0bf98ed88fc210f945ec9dc5897f46', 'CE', 20, 25, 10),
-(2, 'it_hod', '5ad239cb8a44f659eaaee0aa1ea5b94947abe557', 'IT', 11, 11, 11),
-(3, 'mh_hod', '8ead6354003c3f4fa80c692081bc8265af11220e', 'MH', 15, 10, 30),
-(4, 'ec_hod', '69e8ee2d1cc1f429960a8637125d15e19e9daa8b', 'EC', 15, 10, 30),
-(5, 'ic_hod', '8723baf2cf4683b85ee1c815495dd27835ab6fa7', 'IC', 15, 10, 30),
+(1, 'ce_hod', '4e71ec6e6f0bf98ed88fc210f945ec9dc5897f46', 'CSE', 20, 25, 10),
+(2, 'et&t_hod', '5ad239cb8a44f659eaaee0aa1ea5b94947abe557', 'ET&T', 11, 11, 11),
+(3, 'mech_hod', '8ead6354003c3f4fa80c692081bc8265af11220e', 'MECH', 15, 10, 30),
+(4, 'civil_hod', '69e8ee2d1cc1f429960a8637125d15e19e9daa8b', 'CIVIL', 15, 10, 30),
+(5, 'eee_hod', '8723baf2cf4683b85ee1c815495dd27835ab6fa7', 'EEE', 15, 10, 30),
 (6, 'cl_hod', 'ef4999d1761ed18bf1a96c80fe81a0a117cace25', 'CL', 15, 10, 30),
 (7, 'ch_hod', '72c5a4143e012d2d999449d7d42bbc63d5693779', 'CH', 15, 10, 30);
 
@@ -65,6 +71,11 @@ CREATE TABLE `employees` (
   `EarnLeave` int(5) UNSIGNED NOT NULL,
   `SickLeave` int(5) UNSIGNED NOT NULL,
   `CasualLeave` int(5) UNSIGNED NOT NULL,
+  `CommutionLeave` int(5) UNSIGNED NOT NULL,
+  `CompassionateLeave` int(5) UNSIGNED NOT NULL,
+  `NursingLeave` int(5) UNSIGNED NOT NULL,
+  `StudyLeave` int(5) UNSIGNED NOT NULL,
+  `MaternityLeave` int(5) UNSIGNED NOT NULL,
   `DateOfJoin` date NOT NULL,
   `Random` int(15) NOT NULL,
   `Designation` varchar(40) NOT NULL,
@@ -93,6 +104,9 @@ CREATE TABLE `emp_leaves` (
   `Dept` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+
+
+CREATE TABLE `joining_request` SELECT * FROM `employees`;
 --
 -- Indexes for dumped tables
 --
@@ -107,6 +121,10 @@ ALTER TABLE `admins`
 -- Indexes for table `employees`
 --
 ALTER TABLE `employees`
+  ADD PRIMARY KEY (`id`);
+
+
+ALTER TABLE `joining_request`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -128,6 +146,9 @@ ALTER TABLE `admins`
 -- AUTO_INCREMENT for table `employees`
 --
 ALTER TABLE `employees`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+ALTER TABLE `joining_request`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `emp_leaves`

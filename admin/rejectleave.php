@@ -43,8 +43,9 @@ if(isset($_SESSION['adminuser']))
 							$sql3 = "UPDATE emp_leaves SET Status = 'Rejected' WHERE id = '".$id."'";
 							if($conn->query($sql3) === TRUE)
 									{
-									$msg = "Your Leave Has Been Rejected ! \nEmployee Name : ".$row['EmpName']."\nLeave Type : ".$row['LeaveType']."\nNo. Of Leave Days : ".$row['LeaveDays']."\nStarting Date : ".$row['StartDate']."\nEnd date : ".$row['EndDate']."\n\n\nThanks,\nwebadmin, Leave Management System";
-									$status = mailer($email,$msg);
+									$msg = "Your Leave Has Been Rejected ! <br>Employee Name : ".$row['EmpName']."<br>Leave Type : ".$row['LeaveType']."<br>No. Of Leave Days : ".$row['LeaveDays']."<br>Starting Date : ".$row['StartDate']."<br>End date : ".$row['EndDate']."<br><br><br>Thanks,<br>webadmin, Leave Management System";
+									$subject = "Leave Request Rejected !";
+									$status = mailer($email,$msg,$subject);
 							
 									if($status === TRUE)
 										{

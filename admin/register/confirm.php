@@ -98,6 +98,12 @@ if($conn->query($sql2) == TRUE)
 						$earnleave = $row2['SetEarnLeave'];
 						$sickleave = $row2['SetSickLeave'];
 						$casualleave = $row2['SetCasualLeave'];
+						$commutionleave = $row2['SetCommutionLeave'];
+						$nursingleave = $row2['SetNursingLeave'];
+						$studyleave = $row2['SetStudyLeave'];
+						$compassionateleave = $row2['SetCompassionateLeave'];
+						$maternityleave = $row2['SetMaternityLeave'];
+						$hodmailid = $row2['email'];
 					}
 			}
 	}
@@ -109,7 +115,8 @@ else
 	{
 		echo "<div class = 'reg-form'>";
 		$pw = $uname;
-		$sql = "INSERT INTO joining_request (UserName,EmpPass,EmpName,Dept,EarnLeave,SickLeave,CasualLeave,EmpEmail,DateOfJoin,Designation,EmpType,EmpFee,DateOfBirth,gender) VALUES "."('".$uname."','".$pw."','".$empname."','".$dept."','".$earnleave."','".$sickleave."','".$casualleave."','".$mailid."','".$doj."','".$designation."','".$emptype."','".$empfee."','".$dob."','".$gender."')";
+		$sql = "INSERT INTO joining_request (UserName,EmpPass,EmpName,Dept,EarnLeave,SickLeave,CasualLeave,CommutionLeave,NursingLeave,StudyLeave,CompassionateLeave,MaternityLeave,EmpEmail,DateOfJoin,Designation,EmpType,EmpFee,DateOfBirth,gender) 
+		VALUES "."('".$uname."','".$pw."','".$empname."','".$dept."','".$earnleave."','".$sickleave."','".$casualleave."','".$commutionleave."','".$nursingleave."','".$studyleave."','".$compassionateleave."','".$maternityleave."','".$mailid."','".$doj."','".$designation."','".$emptype."','".$empfee."','".$dob."','".$gender."')";
 		if ($conn->query($sql) === TRUE) {
 			echo "<center>";
 			echo "<strong> Registration Successful !</strong><br/><br/>";
@@ -122,9 +129,16 @@ else
 			echo "Designation : ".$designation."<br/>";
 			echo "Employment Type : ".$emptype." ; ".$empfee."<br/>";
 			echo "Date Of Birth : ".$dob2."<br/>";
-			$msg = "Registration Successful! \n\nUsername : ".$uname."\nEmployee Name : ".$empname."\nPassword : ".$pass."\nDepartment : ".$dept."\nEmail ID : ".$mailid."\nDate Of Joining (yyyy/mm/dd): ".$doj."\n\n\nThanks For Registering with us\n\n\n\nRegards,\nwebadmin, Leave Management System";
+			/*Thsi section is of Teacher */
+			$msg = "Joining Request sent Successfully! <br><br>Username : ".$uname."<br>Employee Name : ".$empname."<br>Password : ".$pass."<br>Department : ".$dept."<br>Email ID : ".$mailid."<br>Date Of Joining (yyyy/mm/dd): ".$doj."<br><br><br>Thanks For Registering with us<br><br><br><br>Regards,<br>webadmin, Leave Management System";
+			$subject = "Joining Request";
 			$to = $mailid;
-			$status = mailer($to,$msg);
+			$status = mailer($to,$msg,$subject);
+			/* THIS MAIL WILL GO TO HOD*/
+			$msg = "<bold>Joining Request!<bold> <br><br>Username : ".$uname."<br>Employee Name : ".$empname."<br>Password : ".$pass."<br>Department : ".$dept."<br>Email ID : ".$mailid."<br>Date Of Joining (yyyy/mm/dd): ".$doj."<br><br><br>Thanks For Registering with us<br><br><br><br>Regards,<br>webadmin, Leave Management System";
+			$subject = "Joining Request of <bold>".$empname."<bold>";
+			$to = $hodmailid;
+			$status = mailer($to,$msg,$subject);
 			if($status == true)
 				{
 					echo "<br/>Please check the email ".$mailid." for the confirmation page.<br/>";

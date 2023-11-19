@@ -15,49 +15,22 @@ include 'adminnavi.php';
 include 'connect.php';
 include 'mailer.php';
 
-// if(filter_var($_GET['EmpEmail'],FILTER_VALIDATE_INT) )
-// 	{
-// 		$id =$_GET['EmpEmail'];
-// 		// $empid =$_GET['empid'];
-// 	}
-// else
-// 	{
-// 		header('location:home.php');
-// 	}
 $id = $_GET['id'];
+$email = $id;
+$empid = $_GET["empid"];
 if(isset($_SESSION['adminuser']))
 	{
 	
 	// $sql = "SELECT * FROM emp_leaves WHERE id='".$id."'";
-	$sql = "DELETE FROM JOINING_REQUEST WHERE EmpEmail = '".$id."'";
-	$result = $conn->query($sql);
-	header('location:index.php');
-	// if($result->num_rows > 0)
-	// 	{
-	// 	while($row = $result->fetch_assoc())
-	// 		{
-	// 			$sql2 = "SELECT id,EmpEmail FROM employees WHERE id = '".$empid."'";
-	// 			$result2 = $conn->query($sql2);
-	// 			if($result2->num_rows > 0)
-	// 				{
-	// 					while($row2 = $result2->fetch_assoc())
-	// 						{
-	// 						$email = $row2['EmpEmail'];
-	// 						$sql3 = "UPDATE emp_leaves SET Status = 'Rejected' WHERE id = '".$id."'";
-	// 						if($conn->query($sql3) === TRUE)
-	// 								{
-	// 								$msg = "Your Leave Has Been Rejected ! \nEmployee Name : ".$row['EmpName']."\nLeave Type : ".$row['LeaveType']."\nNo. Of Leave Days : ".$row['LeaveDays']."\nStarting Date : ".$row['StartDate']."\nEnd date : ".$row['EndDate']."\n\n\nThanks,\nwebadmin, Leave Management System";
-	// 								$status = mailer($email,$msg);
-							
-	// 								if($status === TRUE)
-	// 									{
-	// 									echo "The Leave Request Status Mail For ".$row['EmpName']." Has been sent to his/her registered email address !<br/>";
-	// 									}
-	// 								}	
-	// 						}
-	// 				}
-	// 		}
-	// 	}
+	$sql2 = "DELETE FROM JOINING_REQUEST WHERE EmpEmail = '".$id."' AND id = '".$empid."'";
+	$result = $conn->query($sql2);
+	$msg = "Your joining request Has Been <bold>Declined<bold> !";							
+	$subject = "Joining Request Declined";
+	$status = mailer($email,$msg,$subject);
+	$conn->close();
+	echo "<script>
+	window.location.href='index.php';
+	</script>";
 	}
 else
 	{

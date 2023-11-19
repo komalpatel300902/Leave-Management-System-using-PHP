@@ -15,6 +15,8 @@ include 'adminnavi.php';
 include 'connect.php';
 include 'mailer.php';
 $id =$_GET['id'];
+$email = $id;
+$empid = $_GET["empid"];
 // if(filter_var($_GET['EmpEmail'],FILTER_VALIDATE_INT))
 // 	{
 // 		$id =$_GET['EmpEmail'];
@@ -26,14 +28,22 @@ $id =$_GET['id'];
 // 	}
 if(isset($_SESSION['adminuser']))
 	{
-	$sql = "INSERT INTO EMPLOYEES SELECT * FROM JOINING_REQUEST WHERE EmpEmail = '".$id."'";
+	$username_sql = "SELECT UserName FROM JOINING_REQUEST WHERE EmpEmail = '".$id."' AND id = '".$empid."'";
+	$result = $conn->query($username_sql);
+	$username =  $result->fetch_assoc();
+	$sql = "INSERT INTO EMPLOYEES SELECT * FROM JOINING_REQUEST WHERE EmpEmail = '".$id."' AND id = '".$empid."'";
 	// $sql = "SELECT id,EmpName,LeaveType,RequestDate,Status,LeaveDays,StartDate,EndDate FROM emp_leaves WHERE id='".$id."'";
 	$result = $conn->query($sql);
-	$sql2 = "DELETE FROM JOINING_REQUEST WHERE EmpEmail = '".$id."'";
+	$sql2 = "DELETE FROM JOINING_REQUEST WHERE EmpEmail = '".$id."' AND id = '".$empid."'";
 	$result = $conn->query($sql2);
 
 	$conn->close();
-	header('location:index.php');
+	$msg = "Your joining request Has Been <bold>Approved<bold> ! <br>UserName : ".$username["UserName"]."<br>Password : ".$username["UserName"]."<br>";							
+	$subject = "Joining Request Approved !";
+	$status = mailer($email,$msg,$subject);
+	echo "<script>
+	window.location.href='index.php';
+	</script>";
 	}
 	// if($result->num_rows > 0)
 	// 	{
@@ -80,7 +90,7 @@ if(isset($_SESSION['adminuser']))
 	// 						$sql4 = "UPDATE emp_leaves SET Status = 'Granted' WHERE id = '".$id."'";
 	// 						if($conn->query($sql4) === TRUE)
 	// 							{
-	// 							$msg = "Your Leave Has Been Granted Successfully ! \nEmployee Name : ".$row['EmpName']."\nLeave Type : ".$row['LeaveType']."\nNo. Of Leave Days : ".$row['LeaveDays']."\nStarting Date : ".$row['StartDate']."\nEnd date : ".$row['EndDate']."\n\n\nThanks,\nwebadmin, Leave Management System";
+	// 							$msg = "Your Leave Has Been Granted Successfully ! <br>Employee Name : ".$row['EmpName']."<br>Leave Type : ".$row['LeaveType']."<br>No. Of Leave Days : ".$row['LeaveDays']."<br>Starting Date : ".$row['StartDate']."<br>End date : ".$row['EndDate']."<br><br><br>Thanks,<br>webadmin, Leave Management System";
 	// 							$status = mailer($email,$msg);
 								
 	// 							if($status === TRUE)

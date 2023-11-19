@@ -41,39 +41,39 @@ if(isset($_SESSION['user']))
 					}
 					echo "<br><br>";
 
-				// if($row['MaternityLeave'] > 0){
-				// 	echo "<button type = 'submit' name = 'type' value = 'Maternity Leave' class = 'error-button shadow'>Maternity Leave</button>";
-				// 	}
-				// else{
-				// 	echo "<button type = 'submit' name = 'type' value = 'Maternity Leave' class = 'error-button shadow' disabled>Maternity Leave</button>";
-				// }
-				// if($row['CompassionateLeave'] > 0){
-				// 	echo "<button type = 'submit' name = 'type' value = 'Compassionate Leave' class = 'error-button shadow' >Compassionate Leave</button>";
-				// 	}
-				// else{
-				// 	echo "<button type = 'submit' name = 'type' value = 'Compassionate Leave' class = 'error-button shadow' disabled>Compassionate Leave</button>";
-				// }
-				// if($row['NursingLeave'] > 0)
-				// 	{
-				// 	echo "<button type = 'submit' name = 'type' value = 'Nursing Leave' class = 'error-button shadow' >Nursing Leave</button>";
-				// 	}
-				// else{
-				// 	echo "<button type = 'submit' name = 'type' value = 'Nursing Leave' class = 'error-button shadow' disabled>Nursing Leave</button>";
-				// }
-				// echo "<br><br>";
-				// if($row['CommutionLeave'] > 0){	
-				// 	echo "<button type = 'submit' name = 'type' value = 'Commution Leave' class = 'error-button shadow' >Commution Leave</button>";
-				// }
-				// else{
-				// 	echo "<button type = 'submit' name = 'type' value = 'Commution Leave' class = 'error-button shadow' disabled>Commution Leave</button>";
-				// }
-				// if($row['StudyLeave'] > 0)
-				// {
-				// 	echo "<button type = 'submit' name = 'type' value = 'Study Leave' class = 'error-button shadow' >Study Leave</button>";
-				// }
-				// else{
-				// 	echo "<button type = 'submit' name = 'type' value = 'Study Leave' class = 'error-button shadow' disabled>Study Leave</button>";
-				// }
+				if($row['MaternityLeave'] > 0 && $row['gender'] == 'Female'){
+					echo "<button type = 'submit' name = 'type' value = 'Maternity Leave' class = 'login-button shadow'>Maternity Leave</button>";
+					}
+				else{
+					echo "<button type = 'submit' name = 'type' value = 'Maternity Leave' class = 'error-button shadow' disabled>Maternity Leave</button>";
+				}
+				if($row['CompassionateLeave'] > 0){
+					echo "<button type = 'submit' name = 'type' value = 'Compassionate Leave' class = 'login-button shadow' >Compassionate Leave</button>";
+					}
+				else{
+					echo "<button type = 'submit' name = 'type' value = 'Compassionate Leave' class = 'error-button shadow' disabled>Compassionate Leave</button>";
+				}
+				if($row['NursingLeave'] > 0)
+					{
+					echo "<button type = 'submit' name = 'type' value = 'Nursing Leave' class = 'login-button shadow' >Nursing Leave</button>";
+					}
+				else{
+					echo "<button type = 'submit' name = 'type' value = 'Nursing Leave' class = 'error-button shadow' disabled>Nursing Leave</button>";
+				}
+				echo "<br><br>";
+				if($row['CommutionLeave'] > 0){	
+					echo "<button type = 'submit' name = 'type' value = 'Commution Leave' class = 'login-button shadow' >Commution Leave</button>";
+				}
+				else{
+					echo "<button type = 'submit' name = 'type' value = 'Commution Leave' class = 'error-button shadow' disabled>Commution Leave</button>";
+				}
+				if($row['StudyLeave'] > 0)
+				{
+					echo "<button type = 'submit' name = 'type' value = 'Study Leave' class = 'login-button shadow' >Study Leave</button>";
+				}
+				else{
+					echo "<button type = 'submit' name = 'type' value = 'Study Leave' class = 'error-button shadow' disabled>Study Leave</button>";
+				}
 				}
 		}
 	echo "</form>";

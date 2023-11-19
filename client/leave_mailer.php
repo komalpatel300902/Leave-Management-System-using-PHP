@@ -11,7 +11,7 @@ require 'phpmailer/src/SMTP.php';
 
 
 // require_once "Mail.php";
-function mailer($recipient,$msg,$uname){
+function mailer($recipient,$msg,$subject){
     $mail = new PHPMailer(true);
     
 try {
@@ -29,7 +29,7 @@ try {
 	// $mail->addAddress('receiver2@gfg.com', 'Name');
 	
 	$mail->isHTML(true);								
-	$mail->Subject = 'GECR Teacher Registration';
+	$mail->Subject = $subject;
 	$mail->Body = $msg;
 	$mail->AltBody = 'This block is body content';
 	$mail->send();
