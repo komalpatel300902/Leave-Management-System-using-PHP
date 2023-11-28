@@ -79,6 +79,7 @@ if(isset($_SESSION['user']))
 					</select>
 					<select name = 'leaveyear' class = 'textbox shadow selected'>
 						<option value = '".date("Y")."'>".date("Y")."</option>
+						<option value = '".(date("Y")+1)."'>".(date("Y")+1)."</option>
 					</select>
 					</td>
 					</tr>";
@@ -133,6 +134,7 @@ if(isset($_SESSION['user']))
 					</select>
 					<select name = 'endleaveyear' class = 'end textbox shadow selected'>
 						<option value = '".date("Y")."'>".date("Y")."</option>
+						<option value = '".(date("Y")+1)."'>".(date("Y")+1)."</option>
 					</select>
 					</td>
 					</tr>";

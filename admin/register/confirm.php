@@ -109,7 +109,7 @@ if($conn->query($sql2) == TRUE)
 	}
 if(!empty($errmsg))
 	{
-	header('location:../ ../register_as_employee.php?err='.htmlspecialchars(urlencode($errmsg)));
+	header('location:../../register_as_employee.php?err='.htmlspecialchars(urlencode($errmsg)));
 	}
 else
 	{
@@ -135,7 +135,7 @@ else
 			$to = $mailid;
 			$status = mailer($to,$msg,$subject);
 			/* THIS MAIL WILL GO TO HOD*/
-			$msg = "<bold>Joining Request!<bold> <br><br>Username : ".$uname."<br>Employee Name : ".$empname."<br>Password : ".$pass."<br>Department : ".$dept."<br>Email ID : ".$mailid."<br>Date Of Joining (yyyy/mm/dd): ".$doj."<br><br><br>Thanks For Registering with us<br><br><br><br>Regards,<br>webadmin, Leave Management System";
+			$msg = "<bold>Joining Request!<bold> <br><br>Employee Name : ".$empname."<br>Department : ".$dept."<br>Email ID : ".$mailid."<br>Date Of Joining (yyyy/mm/dd): ".$doj."<br><br><br>Thanks For Registering with us<br><br><br><br>Regards,<br>webadmin, Leave Management System";
 			$subject = "Joining Request of <bold>".$empname."<bold>";
 			$to = $hodmailid;
 			$status = mailer($to,$msg,$subject);

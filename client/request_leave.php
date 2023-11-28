@@ -22,57 +22,57 @@ if(isset($_SESSION['user']))
 			while($row = $result->fetch_assoc())
 				{
 				if($row['SickLeave'] > 0){
-					echo "<button type = 'submit' name = 'type' value = 'Sick Leave' class = 'login-button shadow'>Sick Leave</button>";	
+					echo "<button type = 'submit' name = 'type' value = 'Sick Leave' class = 'login-button shadow'>Sick Leave ".$row['SickLeave']. "</button>";	
 					}
 				else{
-						echo "<button type = 'submit' name = 'type' value = 'Sick Leave' class = 'error-button shadow' disabled>Sick Leave</button>";
+						echo "<button type = 'submit' name = 'type' value = 'Sick Leave' class = 'error-button shadow' disabled>Sick Leave".$row['SickLeave']."</button>";
 					}
 				if($row['EarnLeave'] > 0){
-					echo "<button type = 'submit' name = 'type' value = 'Earn Leave' class = 'login-button shadow'>Earn Leave</button>";	
+					echo "<button type = 'submit' name = 'type' value = 'Earn Leave' class = 'login-button shadow'>Earn Leave  ".$row['EarnLeave']."</button>";	
 					}
 				else{
-						echo "<button type = 'submit' name = 'type' value = 'Earn Leave' class = 'error-button shadow' disabled>Earn Leave</button>";
+						echo "<button type = 'submit' name = 'type' value = 'Earn Leave' class = 'error-button shadow' disabled>Earn Leave  ".$row['EarnLeave']."</button>";
 					}
 				if($row['CasualLeave'] > 0){
-					echo "<button type = 'submit' name = 'type' value = 'Casual Leave' class = 'login-button shadow'>Casual Leave</button>";	
+					echo "<button type = 'submit' name = 'type' value = 'Casual Leave' class = 'login-button shadow'>Casual Leave ".$row['CasualLeave']."</button>";	
 					}
 				else{
-						echo "<button type = 'submit' name = 'type' value = 'Casual Leave' class = 'error-button shadow' disabled>Casual Leave</button>";
+						echo "<button type = 'submit' name = 'type' value = 'Casual Leave' class = 'error-button shadow' disabled>Casual Leave ".$row['CasualLeave']."</button>";
 					}
 					echo "<br><br>";
 
 				if($row['MaternityLeave'] > 0 && $row['gender'] == 'Female'){
-					echo "<button type = 'submit' name = 'type' value = 'Maternity Leave' class = 'login-button shadow'>Maternity Leave</button>";
+					echo "<button type = 'submit' name = 'type' value = 'Maternity Leave' class = 'login-button shadow'>Maternity Leave ".$row['MaternityLeave']."</button>";
 					}
 				else{
-					echo "<button type = 'submit' name = 'type' value = 'Maternity Leave' class = 'error-button shadow' disabled>Maternity Leave</button>";
+					echo "<button type = 'submit' name = 'type' value = 'Maternity Leave' class = 'error-button shadow' disabled>Maternity Leave ".$row['MaternityLeave']."</button>";
 				}
 				if($row['CompassionateLeave'] > 0){
-					echo "<button type = 'submit' name = 'type' value = 'Compassionate Leave' class = 'login-button shadow' >Compassionate Leave</button>";
+					echo "<button type = 'submit' name = 'type' value = 'Compassionate Leave' class = 'login-button shadow' >Compassionate Leave ".$row['CompassionateLeave']."</button>";
 					}
 				else{
-					echo "<button type = 'submit' name = 'type' value = 'Compassionate Leave' class = 'error-button shadow' disabled>Compassionate Leave</button>";
+					echo "<button type = 'submit' name = 'type' value = 'Compassionate Leave' class = 'error-button shadow' disabled>Compassionate Leave ".$row['CompassionateLeave']."</button>";
 				}
 				if($row['NursingLeave'] > 0)
 					{
-					echo "<button type = 'submit' name = 'type' value = 'Nursing Leave' class = 'login-button shadow' >Nursing Leave</button>";
+					echo "<button type = 'submit' name = 'type' value = 'Nursing Leave' class = 'login-button shadow' >Nursing Leave ".$row['NursingLeave']."</button>";
 					}
 				else{
-					echo "<button type = 'submit' name = 'type' value = 'Nursing Leave' class = 'error-button shadow' disabled>Nursing Leave</button>";
+					echo "<button type = 'submit' name = 'type' value = 'Nursing Leave' class = 'error-button shadow' disabled>Nursing Leave ".$row['NursingLeave']."</button>";
 				}
 				echo "<br><br>";
 				if($row['CommutionLeave'] > 0){	
-					echo "<button type = 'submit' name = 'type' value = 'Commution Leave' class = 'login-button shadow' >Commution Leave</button>";
+					echo "<button type = 'submit' name = 'type' value = 'Commution Leave' class = 'login-button shadow' >Commution Leave ".$row['CommutionLeave']."</button>";
 				}
 				else{
-					echo "<button type = 'submit' name = 'type' value = 'Commution Leave' class = 'error-button shadow' disabled>Commution Leave</button>";
+					echo "<button type = 'submit' name = 'type' value = 'Commution Leave' class = 'error-button shadow' disabled>Commution Leave ".$row['CommutionLeave']."</button>";
 				}
 				if($row['StudyLeave'] > 0)
 				{
-					echo "<button type = 'submit' name = 'type' value = 'Study Leave' class = 'login-button shadow' >Study Leave</button>";
+					echo "<button type = 'submit' name = 'type' value = 'Study Leave' class = 'login-button shadow' >Study Leave ".$row['StudyLeave']."</button>";
 				}
 				else{
-					echo "<button type = 'submit' name = 'type' value = 'Study Leave' class = 'error-button shadow' disabled>Study Leave</button>";
+					echo "<button type = 'submit' name = 'type' value = 'Study Leave' class = 'error-button shadow' disabled>Study Leave ".$row['StudyLeave']."</button>";
 				}
 				}
 		}

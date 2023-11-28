@@ -23,28 +23,28 @@ if(isset($_GET['err']))
 	}
 if(TRUE)
 	{
-	echo"<form id = 'myform' action = 'admin/register/confirm.php' method = 'post' style = 'border : 1px solid black;'>
-	<table style = 'border : 1px solid black; margin-top : 20px;'>
-	<tr><td><div class = 'error'>*</div> Employee Name : </td><td><input type = 'text' name = 'empname' class = 'reg-form-fields shadow selected' placeholder = 'Employee Name'></td></tr><br>
-<tr><td><div class = 'error'>*</div> Username : </td><td><input type = 'text' name = 'uname' class = 'reg-form-fields shadow selected' placeholder = 'Employee Username'></td></tr><br>
-<tr><td><div class = 'error'>*</div> Date of joining (dd/mm/yyyy): <td><input type = 'number' name = 'date-join' min = '1' max = '31' class = 'date-of-joining shadow selected' step = '1' placeholder = 'dd' style='width:50px;'><input type = 'number' name = 'month-join' min = '1' max = '12' class = 'date-of-joining shadow selected' step = '1' placeholder = 'mm' style='width:50px;'><input type = 'number' name = 'year-join' min = '1985' max = '".date('Y')."' class = 'date-of-joining shadow selected' step = '1' placeholder = 'yyyy' style='width:100px;'></td></tr><br>
-<tr><td><div class = 'error'>*</div> Date of birth (dd/mm/yyyy): <td><input type = 'number' name = 'date-birth' min = '1' max = '31' class = 'date-of-joining shadow selected' step = '1' placeholder = 'dd' style='width:50px;'><input type = 'number' name = 'month-birth' min = '1' max = '12' class = 'date-of-joining shadow selected' step = '1' placeholder = 'mm' style='width:50px;'><input type = 'number' name = 'year-birth' min = '1901' max = '".date('Y')."' class = 'date-of-joining shadow selected' step = '1' placeholder = 'yyyy' style='width:100px;'></td></tr><br>
-<tr><td><div class = 'error'>*</div> Employee email id : </td><td><input type = 'text' name = 'mailid' class = 'reg-form-fields shadow selected' placeholder = 'Employee Email ID'></td></tr><br>
+	echo"<form id = 'myform' action = 'admin/register/confirm.php' method = 'post'>";
+	echo"<table style = 'padding-top: 30px;'>
+	<tr><td><div class = 'error'>*</div> Employee Name : </td><td><input type = 'text' name = 'empname' class = 'reg-form-fields shadow selected' placeholder = 'Employee Name'></td></tr>
+<tr><td><div class = 'error'>*</div> Username : </td><td><input type = 'text' name = 'uname' class = 'reg-form-fields shadow selected' placeholder = 'Employee Username'></td></tr>
+<tr><td><div class = 'error'>*</div> Date of joining (dd/mm/yyyy): <td><input type = 'number' name = 'date-join' min = '1' max = '31' class = 'date-of-joining shadow selected' step = '1' placeholder = 'dd' style='width:50px;'><input type = 'number' name = 'month-join' min = '1' max = '12' class = 'date-of-joining shadow selected' step = '1' placeholder = 'mm' style='width:50px;'><input type = 'number' name = 'year-join' min = '1985' max = '".date('Y')."' class = 'date-of-joining shadow selected' step = '1' placeholder = 'yyyy' style='width:100px;'></td></tr>
+<tr><td><div class = 'error'>*</div> Date of birth (dd/mm/yyyy): <td><input type = 'number' name = 'date-birth' min = '1' max = '31' class = 'date-of-joining shadow selected' step = '1' placeholder = 'dd' style='width:50px;'><input type = 'number' name = 'month-birth' min = '1' max = '12' class = 'date-of-joining shadow selected' step = '1' placeholder = 'mm' style='width:50px;'><input type = 'number' name = 'year-birth' min = '1901' max = '".date('Y')."' class = 'date-of-joining shadow selected' step = '1' placeholder = 'yyyy' style='width:100px;'></td></tr>
+<tr><td><div class = 'error'>*</div> Employee email id : </td><td><input type = 'text' name = 'mailid' class = 'reg-form-fields shadow selected' placeholder = 'Employee Email ID'></td></tr>
 <tr><td><div class = 'error'>*</div> Department : </td><td><select name = 'dept' class = 'reg-form-fields shadow selected'>
 						<option>CSE</option><option>ET&T</option><option>MECH</option><option>CIVIL</option><option>EEE</option>
 				  </select>
-				  </td></tr><br>
+				  </td></tr>
 <tr><td><div class = 'error'>*</div> Gender : </td><td><select name = 'gender' class = 'reg-form-fields shadow selected'>
 						<option>Male</option><option>Female</option>
 				  </select>
-				  </td></tr><br>
-<tr><td><div class = 'error'>*</div> Designation : </td><td><input type = 'text' name = 'designation' class = 'reg-form-fields shadow selected' placeholder = 'Employee Designation'></td></tr><br>
+				  </td></tr>
+<tr><td><div class = 'error'>*</div> Designation : </td><td><input type = 'text' name = 'designation' class = 'reg-form-fields shadow selected' placeholder = 'Employee Designation'></td></tr>
 <tr><td><div class = 'error'>*</div> Employment Type : </td><td><select name = 'factype' class = 'reg-form-fields shadow selected'>
 						<option>Permanent</option><option>Ad-hoc</option><option>Fix</option>
 				  </select>
 				  <select name = 'facfee' class = 'reg-form-fields shadow selected'>
 						<option>Grant In Aid</option><option>Self Finance</option>
-				  </select></td></tr><br>
+				  </select></td></tr>
 <tr><td><input type = 'submit' value = 'Submit' class = 'registration shadow'></td></tr>
 </form>
 </table>

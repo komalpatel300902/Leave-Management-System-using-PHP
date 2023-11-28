@@ -16,7 +16,7 @@ if(isset($_SESSION['user']))
 			{	
 				if($newpass != $_SESSION['user'])
 				{
-					$oldpass = hash_hmac('sha512', 'salt'.$oldpass, md5($uname));
+					// $oldpass = hash_hmac('sha512', 'salt'.$oldpass, md5($uname));
 					$result = $conn->query($sql);
 					if($result->num_rows > 0)
 						{
@@ -27,7 +27,7 @@ if(isset($_SESSION['user']))
 								$id = $row['id'];
 								if($oldpass == $row["EmpPass"])
 									{
-									$newpass = hash_hmac('sha512', 'salt'.$newpass, md5($uname));
+									// $newpass = hash_hmac('sha512', 'salt'.$newpass, md5($uname));
 									$sql2 = "UPDATE employees SET EmpPass='".$newpass."' WHERE id=".$id;
 									if($conn->query($sql2) === TRUE)
 										{
