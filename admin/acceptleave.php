@@ -129,6 +129,9 @@ if(isset($_SESSION['adminuser']))
 									{
 									echo "The Leave Request Status mail For ".$row['EmpName']." Has been sent to his/her registered email address !<br/>";
 									}
+								echo "<script>
+									window.location.href='view_leaves.php';
+									</script>";
 								}
 							}
 					}

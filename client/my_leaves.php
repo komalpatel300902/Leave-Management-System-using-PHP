@@ -40,7 +40,7 @@ if(isset($_SESSION['user']))
 					echo "<td>".$row2["StartDate"]."</td>";
 					echo "<td>".$row2["EndDate"]."</td>";
 					echo "<td>".$row2["Status"]."</td>";
-					echo "<td><a href = 'leaves/".$_SESSION['user'].$row2["StartDate"].$row2["LeaveType"].$row2["EndDate"].".pdf'>Download</a></td>";
+					echo "<td><a href = 'leaves/".$_SESSION['user'].$row2["StartDate"].$row2["LeaveType"].$row2["EndDate"].".pdf' target = '_blank'>Download</a></td>";
 					}
 				echo "</table>";
 				echo "</center>";

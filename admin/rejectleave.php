@@ -47,11 +47,13 @@ if(isset($_SESSION['adminuser']))
 									$subject = "Leave Request Rejected !";
 									$status = mailer($email,$msg,$subject);
 							
-									if($status === TRUE)
-										{
+									if($status === TRUE){
 										echo "The Leave Request Status Mail For ".$row['EmpName']." Has been sent to his/her registered email address !<br/>";
-										}
-									}	
+									}
+										echo "<script>
+										window.location.href='view_leaves.php';
+										</script>";
+								}	
 							}
 					}
 			}

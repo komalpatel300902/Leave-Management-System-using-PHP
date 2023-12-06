@@ -33,10 +33,10 @@ try {
 	$mail->Body = $msg;
 	$mail->AltBody = 'This block is body content';
 	$mail->send();
-	echo "Mail has been sent successfully!";
+	// echo "Mail has been sent successfully!";
     return true;
 } catch (Exception $e) {
-	echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+	// echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
     return false;
 }
 

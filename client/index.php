@@ -24,7 +24,7 @@ if(isset($_SESSION['user']))
 	echo "<td><a href = 'passrecovery.php'>Forgot Your password ?</a></td></tr>";
 	echo "</table>";
 	echo "</form>";
-	echo "<p>Your Password is your date of birth in format (dd-mm-yyyy)</p>";
+	echo "<p>Your Password is your Username (dd-mm-yyyy)</p>";
 	echo "</center>";
 	echo "</div>";
 	echo "</body>";
