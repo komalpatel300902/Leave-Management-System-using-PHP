@@ -26,15 +26,15 @@ if(isset($_SESSION['adminuser']))
 		}
 	else
 		{}
-	$sql = "DELETE FROM employees WHERE id='".$id."'";
+	$sql = "DELETE FROM employees WHERE id='".$id."' and UserName LIKE '%" . $user  ."%'";
 	echo "<center>";
 	if ($conn->query($sql) === TRUE)
 		{
-		header('location:home.php?msg='.urlencode('Employee Successfully Removed !'));
+		header('location:searchemp.php?msg='.urlencode('Employee Successfully Removed !'));
 		}
 	else
 		{
-		header('location:home.php?msg='.urlencode('Error Removing Employee !'));
+		header('location:searchemp.php?msg='.urlencode('Error Removing Employee !'));
 		}
 	$conn->close();
 	}

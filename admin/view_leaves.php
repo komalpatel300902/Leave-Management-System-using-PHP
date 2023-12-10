@@ -76,7 +76,7 @@ if(isset($_SESSION['adminuser']))
 								echo "<a href = '#'>Application</a></td>";
 							}
 							
-							echo "<td><a href = 'acceptleave.php?id=".$row2['id']."&empid=".$row2["Id"]."'>Accept</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href = 'rejectleave.php?id=".$row2['id']."&empid=".$row2["Id"]."'>Reject</a></td>";
+							echo "<td><a href = 'acceptleave.php?id=".$row2['id']."&empid=".$row2["Id"]."'>Accept</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href = 'rejectleave.php?id=".$row2['id']."&empid=".$row2["Id"]."'>Reject</a><br><a href = 'forward_to_principal.php?id=".$row2['id']."&empid=".$row2["Id"]."'>Foward to Principal</a></td>";
 							echo "</tr>";
 							$count++;
 							}

@@ -28,6 +28,7 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `admins` (
   `id` int(11) NOT NULL,
+  `EmpName` varchar(50),
   `username` varchar(50) NOT NULL,
   `password` varchar(200) NOT NULL,
   `Dept` varchar(50) NOT NULL,
@@ -39,6 +40,7 @@ CREATE TABLE `admins` (
   `SetNursingLeave` int(11) NOT NULL DEFAULT '30',
   `SetStudyLeave` int(11) NOT NULL DEFAULT '30',
   `SetMaternityLeave` int(11) NOT NULL DEFAULT '30',
+  `SetPaternityLeave` int(11),
   `email` varchar(50),
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -99,6 +101,7 @@ CREATE TABLE `emp_leaves` (
   `RequestDate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `LeaveDays` int(11) NOT NULL,
   `Status` varchar(20) NOT NULL DEFAULT 'Requested',
+  `principal_status` varchar(30) DEFAULT 'Requested',
   `StartDate` date NOT NULL,
   `EndDate` date NOT NULL,
   `Dept` varchar(10) NOT NULL
@@ -107,6 +110,17 @@ CREATE TABLE `emp_leaves` (
 
 
 CREATE TABLE `joining_request` SELECT * FROM `employees`;
+
+CREATE TABLE `principal` (
+  `id` int(11) NOT NULL,
+  `username` varchar(50) NOT NULL,
+  `password` varchar(200) NOT NULL,
+  `email` varchar(50),
+)
+
+create table `hod_leaves` select * from `emp_leaves`;
+
+
 --
 -- Indexes for dumped tables
 --
@@ -154,6 +168,9 @@ ALTER TABLE `joining_request`
 -- AUTO_INCREMENT for table `emp_leaves`
 --
 ALTER TABLE `emp_leaves`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+  ALTER TABLE `hod_leaves`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

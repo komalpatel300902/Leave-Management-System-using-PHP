@@ -91,6 +91,7 @@ li.dropdown {
 
 <ul>
   <li><a href="index.php">Admin Home</a></li>
+  
   <li class="dropdown">
     <a href="#" class="dropbtn">Admin Tools</a>
     <div class="dropdown-content">
@@ -101,6 +102,8 @@ li.dropdown {
 	  <a href = "extract_leaves.php">Extract Leaves</a>
     </div>
   </li>
+  <li><a href = "leaverequest.php">Request Leave</a></li>
+  <li><a href = "My_leaves.php"> My Leaves</a></li>
   <li><a href = "logout.php">Logout</a></li>
 </ul>
 </body>

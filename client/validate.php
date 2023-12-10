@@ -8,6 +8,7 @@ $username =$_POST['uname'];
 $password = $_POST['pass'];
 // $sql = "SELECT UserName, EmpPass,UpdateStatus,Dept FROM employees";
 $sql = "SELECT * FROM employees";
+
 // $result = $conn->query($sql);(
 $result = mysqli_query($conn,$sql) or die("Query Failed");
 if($result->num_rows>0){
@@ -16,9 +17,11 @@ if($result->num_rows>0){
 		
         if(($username == $row["UserName"]) && ($password == $row["EmpPass"]))
 			{
+				$username = $username.$name;
 			$_SESSION["user"] = $username;
 			$dept = $row["dept"];
-			$status = update_leaves($username,$dept);
+			// $status = update_leaves($username,$dept);
+				$status = true;
 			if($status  === true)
 				{
 				header('location:home.php?msg='.urlencode('Your Leaves Were Updated Successfully !'));
@@ -28,10 +31,10 @@ if($result->num_rows>0){
 				header('location:index.php');
 			}
 		}
-		else{
-			header('location:index.php?err='.urlencode('Username Or Password Incorrect'));
-			exit();
-		}
+		// else{
+		// 	header('location:index.php?err='.urlencode('Username Or Password Incorrect'. $username . $password));
+		// 	exit();
+		// }
 		
     }
 }

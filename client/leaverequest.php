@@ -179,6 +179,24 @@ if(isset($_SESSION['user']))
 		
 		//   console.log(getDatesInRange(d1, d2));
 		
+				
+		var days = daysdifference('03/19/2021', '03/31/2021');  
+		   
+		console.log(days);  
+			
+		function daysdifference(firstDate, secondDate){  
+			var startDay = new Date(firstDate);  
+			var endDay = new Date(secondDate);  
+		
+		    
+			var millisBetween = startDay.getTime() - endDay.getTime();  
+		
+		  
+			var days = millisBetween / (1000 * 3600 * 24);       
+			return Math.round(Math.abs(days));  
+		}  
+
+
 
 		$('#btn').click(function(){
 		console.log('i am in my function');

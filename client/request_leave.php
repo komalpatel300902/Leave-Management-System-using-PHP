@@ -44,8 +44,12 @@ if(isset($_SESSION['user']))
 				if($row['MaternityLeave'] > 0 && $row['gender'] == 'Female'){
 					echo "<button type = 'submit' name = 'type' value = 'Maternity Leave' class = 'login-button shadow'>Maternity Leave ".$row['MaternityLeave']."</button>";
 					}
+				else if($row['MaternityLeave'] > 0 && $row['gender'] == 'Male'){
+					echo "<button type = 'submit' name = 'type' value = 'Maternity Leave' class = 'login-button shadow' >Paternity Leave ".$row['MaternityLeave']."</button>";
+				}
 				else{
-					echo "<button type = 'submit' name = 'type' value = 'Maternity Leave' class = 'error-button shadow' disabled>Maternity Leave ".$row['MaternityLeave']."</button>";
+					echo "<button type = 'submit' name = 'type' value = 'Maternity Leave' class = 'error-button shadow' disable >Paternity Leave ".$row['MaternityLeave']."</button>";
+			
 				}
 				if($row['CompassionateLeave'] > 0){
 					echo "<button type = 'submit' name = 'type' value = 'Compassionate Leave' class = 'login-button shadow' >Compassionate Leave ".$row['CompassionateLeave']."</button>";

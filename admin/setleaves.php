@@ -12,7 +12,7 @@ if(isset($_SESSION['adminuser']))
 	$setnursingleave = strip_tags(trim($_POST['setnursingleave']));
 	$setstudyleave = strip_tags(trim($_POST['setstudyleave'])); 
 	$setmaternityleave = strip_tags(trim($_POST['setmaternityleave']));
-	
+	$setpaternityleave = strip_tags(trim($_POST['setpaternityleave']));
 	$sql2 = "SELECT Dept,username,SetEarnLeave,SetCasualLeave,SetSickLeave,SetCommutionLeave,SetCompassionateLeave,SetNursingLeave,SetStudyLeave,SetMaternityLeave FROM admins WHERE username = '".$_SESSION['adminuser']."'";
 	$result = $conn->query($sql2);
 	if($result->num_rows > 0)
@@ -21,6 +21,7 @@ if(isset($_SESSION['adminuser']))
 				{
 					$sql3 = "SELECT Dept,SickLeave,EarnLeave,CasualLeave,CommutionLeave,CompassionateLeave,NursingLeave,StudyLeave,MaternityLeave FROM employees WHERE Dept = '".$row["Dept"]."'";
 					$result2 = $conn->query($sql3);
+
 					if($result2->num_rows > 0)
 						{
 							while($row2 = $result2->fetch_assoc())
@@ -71,7 +72,8 @@ if(isset($_SESSION['adminuser']))
 				}
 		}
 	
-	$sql = "UPDATE admins SET SetSickLeave = '".$setsickleave."', SetEarnLeave = '".$setearnleave."', SetCasualLeave = '".$setcasualleave."', SetCommutionLeave = '".$setcommutionleave."', SetCompassionateLeave = '".$setcompassionateleave."', SetNursingLeave = '".$setnursingleave."', SetStudyLeave = '".$setstudyleave."', SetMaternityLeave = '".$setmaternityleave."' WHERE username = '".$_SESSION['adminuser']."'";
+	$sql = "UPDATE admins SET SetSickLeave = '".$setsickleave."', SetEarnLeave = '".$setearnleave."', SetCasualLeave = '".$setcasualleave."', SetCommutionLeave = '".$setcommutionleave."', SetCompassionateLeave = '".$setcompassionateleave."', SetNursingLeave = '".$setnursingleave."', SetStudyLeave = '".$setstudyleave."', SetMaternityLeave = '".$setmaternityleave."' , SetPaternityLeave = '".$setpaternityleave."' WHERE username = '".$_SESSION['adminuser']."'";
+	$conn->query($sql);
 	if($conn->query($sql) == TRUE)
 		{
 		header('location:set_leaves.php?msg='.urlencode('Leaves Were Set Succesfully!'));

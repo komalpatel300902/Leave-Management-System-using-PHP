@@ -43,6 +43,9 @@ if(isset($_SESSION['adminuser']))
 				</tr><tr>
 				<td>Maternity Leave : </td>
 				<td><input type = 'number' min = '0' name = 'setmaternityleave' class = 'textbox shadow selected'></td>
+				</tr><tr>
+				<td>Paternity Leave : </td>
+				<td><input type = 'number' min = '0' name = 'setpaternityleave' class = 'textbox shadow selected'></td>
 				</tr>
 				<tr>
 				<td><input type = 'submit' value = 'Set' class = 'login-button shadow'></td>

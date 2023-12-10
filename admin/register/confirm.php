@@ -103,6 +103,7 @@ if($conn->query($sql2) == TRUE)
 						$studyleave = $row2['SetStudyLeave'];
 						$compassionateleave = $row2['SetCompassionateLeave'];
 						$maternityleave = $row2['SetMaternityLeave'];
+						$paternityleave = $row2['SetPaternityLeave'];
 						$hodmailid = $row2['email'];
 					}
 			}
@@ -115,8 +116,17 @@ else
 	{
 		echo "<div class = 'reg-form'>";
 		$pw = $uname;
-		$sql = "INSERT INTO joining_request (UserName,EmpPass,EmpName,Dept,EarnLeave,SickLeave,CasualLeave,CommutionLeave,NursingLeave,StudyLeave,CompassionateLeave,MaternityLeave,EmpEmail,DateOfJoin,Designation,EmpType,EmpFee,DateOfBirth,gender) 
-		VALUES "."('".$uname."','".$pw."','".$empname."','".$dept."','".$earnleave."','".$sickleave."','".$casualleave."','".$commutionleave."','".$nursingleave."','".$studyleave."','".$compassionateleave."','".$maternityleave."','".$mailid."','".$doj."','".$designation."','".$emptype."','".$empfee."','".$dob."','".$gender."')";
+		$msgforuser = "";
+		if($gender === "Female"){
+			$sql = "INSERT INTO joining_request (UserName,EmpPass,EmpName,Dept,EarnLeave,SickLeave,CasualLeave,CommutionLeave,NursingLeave,StudyLeave,CompassionateLeave,MaternityLeave,EmpEmail,DateOfJoin,Designation,EmpType,EmpFee,DateOfBirth,gender) 
+			VALUES "."('".$uname."','".$pw."','".$empname."','".$dept."','".$earnleave."','".$sickleave."','".$casualleave."','".$commutionleave."','".$nursingleave."','".$studyleave."','".$compassionateleave."','".$maternityleave."','".$mailid."','".$doj."','".$designation."','".$emptype."','".$empfee."','".$dob."','".$gender."')";
+			$msgforuser = "Request Successfully Sent !";
+		}
+		else if($gender === "Male"){
+			$sql = "INSERT INTO joining_request (UserName,EmpPass,EmpName,Dept,EarnLeave,SickLeave,CasualLeave,CommutionLeave,NursingLeave,StudyLeave,CompassionateLeave,MaternityLeave,EmpEmail,DateOfJoin,Designation,EmpType,EmpFee,DateOfBirth,gender) 
+			VALUES "."('".$uname."','".$pw."','".$empname."','".$dept."','".$earnleave."','".$sickleave."','".$casualleave."','".$commutionleave."','".$nursingleave."','".$studyleave."','".$compassionateleave."','".$paternityleave."','".$mailid."','".$doj."','".$designation."','".$emptype."','".$empfee."','".$dob."','".$gender."')";
+			$msgforuser = "Request Successfully Sent !";
+		}
 		if ($conn->query($sql) === TRUE) {
 			echo "<center>";
 			echo "<strong> Registration Successful !</strong><br/><br/>";
@@ -215,7 +225,7 @@ else
 		$name = "joining_request/".$uname.'_'.$mailid.'.pdf';
 		file_put_contents($name,$dompdf->output());
 		$conn->close();
-
+		header('location:../../register_as_employee.php?err='.urlencode($msgforuser));
 	}
 // }
 // else

@@ -94,8 +94,10 @@ li.dropdown {
   <li class="dropdown">
     <a href="#" class="dropbtn">Login</a>
     <div class="dropdown-content">
+      <a href="../principal/index.php">Principal</a>
 	  <a href = "index.php">Admin</a>
 	  <a href="../client/index.php">Teacher</a>
+    
     </div>
   </li>
   <li><a href="../about.php">About</a></li>
