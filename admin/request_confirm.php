@@ -96,7 +96,7 @@ if(isset($user))
 									}
 								}
 								$msg = "The Leave Request is as follows : <br>Employee Name : ".$empname."<br>Leave Days Requested : ".$leavedays."<br>Type of leave : ".$leavetype."<br>Starting Date of Leave : ".$leavedate."<br><br><br>Thank You,<br>webadmin,Leave Management System.";
-								$subject = "Leave Request from <bold>".$empname."<bold>";
+								$subject = "Leave Request from ".$empname;
 								$statushod = mailer($hodmailid,$msg,$subject);
 									
 								if($statusteacher == true)
@@ -156,7 +156,7 @@ if(isset($user))
 							</head>
 						
 							<style type="text/css">							
-								#pdf_header, #pdf_container{ border: 1px solid black; padding:10px; align : center;}				
+								#pdf_header, #pdf_container{ padding:10px; align : center;}				
 								#pdf_header{ margin:10px auto 0px; border-bottom:none; font-family: sans-serif; line-height:1.6; }				
 								table{width:100%;  border: 1px solid black; }				
 								#pdf_container{margin:0px auto; }
@@ -170,7 +170,7 @@ if(isset($user))
 							<body>
 							<div id="pdf_header" >
 							To ,<br>
-							The Head of the Department,<br>
+							The Prrincipal,<br>
 							'.$department.',<br>
 							Government Engineering College, Raipur(C.G)<br><br>
 
@@ -179,22 +179,13 @@ if(isset($user))
 							Respected Sir,<br><br>
 
 							With due Respect I want to inform you that I Mr/Mrs '.$empname.' would like to take leave of '.$leavedays.'
-							days from '.$leavedate.' to '.$endleavedate.'-----------------------.<br>
+							days from '.$leavedate.' to '.$endleavedate.' because '.$leavereason.'.<br>
 
-							Kindly grant me leave of absense. The Details of class engage is mentioned as follows.<br><br>
-							<table style = "width: 100%; border-collapse: collapse;" id = "engagement">
-									<tr><th>Date </th>
-									<th>Day</th>		
-									<th>Period</th>
-									<th>Semester</th>
-									<th>Branch</th>
-									<th>Subject</th>
-									<th style = "max-width: 60px;">Engage by faculty Name</th></tr>
-									'.$strm.'					
+							Kindly grant me leave of absense. <br><br>				
 									
-								</table>
+								
 
-								<span>Thank You.</span><br>
+								<span>Thank You.</span><br><br><br>
 
 
 								<div style = "float:right;">

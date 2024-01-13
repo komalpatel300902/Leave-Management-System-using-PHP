@@ -74,22 +74,24 @@ if(isset($_SESSION['principal']))
 	</center>
 <?php
 $sql2 = "SELECT * FROM hod_leaves WHERE Status = 'Granted' ";
-$sql = "SELECT * FROM emp_leaves WHERE Status = 'Granted' ";
-if(isset($_POST["employee"])){
-	if($_POST["employee"] != 'All' ){
-		$sql = $sql."and EmpName = '".$_POST["employee"]."' ";	
-	}
-}
+$sql = "SELECT * FROM emp_leaves WHERE principal_status = 'Granted' ";
+
 if(isset($_POST["department"])){
 	if($_POST["department"] != 'All' ){
-		$sql = $sql." and Dept = '".$_POST["department"]."'";
-		$sql2 = $sql2." and Dept = '".$_POST["department"]."'";
+		$sql = $sql." and Dept = '".$_POST["department"]."' ";
+		$sql2 = $sql2." and Dept = '".$_POST["department"]."' ";
 			
 	}
 }
 if(isset($_POST["leave"])){
 	if($_POST["leave"] != 'All' ){
 		$sql = $sql."and LeaveType = '".$_POST["leave"]."' ";	
+	}
+}
+if(isset($_POST["employee"])){
+	if($_POST["employee"] != 'All' ){
+		$sql = $sql."and EmpName = '".$_POST["employee"]."' ";
+		
 	}
 }
 if (isset($_POST['yearstart']) && isset($_POST['monthstart']) && isset($_POST['datestart']) && isset($_POST['yearend']) && isset($_POST['monthend']) && isset($_POST['dateend'])){

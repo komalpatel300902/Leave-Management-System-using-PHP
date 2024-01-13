@@ -75,10 +75,15 @@ if(isset($user))
 						if($row["UserName"] == $user){
 							$leaves = array("Sick Leave","Earn Leave","Casual Leave", "Maternity Leave","Commution Leave","Study Leave","Compassionate Leave","Nursing Leave");
 							$lve = array("SickLeave","EarnLeave","CasualLeave", "MaternityLeave","CommutionLeave","StudyLeave","CompassionateLeave","NursingLeave");
-
+							if($row['gender'] == "Female"){
+								$max_leave_day_at_a_time = array(10,5,2,180,3,30,5,7);
+							}
+							else{
+								$max_leave_day_at_a_time = array(10,5,2,7,3,30,5,7);
+							}
 							for ($x = 0; $x < 8; $x++){
 								if($leavetype === $leaves[$x]){
-									if(($leavedays <= $row[$lve[$x]]) || $leavedays < 0){
+									if(($leavedays <= $row[$lve[$x]]) && $leavedays < $max_leave_day_at_a_time[$x]){
 										$empname = $row["EmpName"];
 										$to = $row["EmpEmail"];
 										$name = "leaves/".$user.$leavedate.$leavetype.$end.'.pdf';
@@ -100,7 +105,7 @@ if(isset($user))
 												}
 											}
 											$msg = "The Leave Request is as follows : <br>Employee Name : ".$empname."<br>Leave Days Requested : ".$leavedays."<br>Type of leave : ".$leavetype."<br>Starting Date of Leave : ".$leavedate."<br><br><br>Thank You,<br>webadmin,Leave Management System.";
-											$subject = "Leave Request from <bold>".$empname."<bold>";
+											$subject = "Leave Request from ".$empname;
 											$statushod = mailer($hodmailid,$msg,$subject);
 												
 											if($statusteacher == true)
@@ -115,7 +120,7 @@ if(isset($user))
 									}
 									else
 									{
-									header('location:request_leave.php?err='.urlencode("You cannot ask for ".$leaves[$x]." more than that of your account !"));
+									header('location:request_leave.php?err='.urlencode("You cannot ask for ".$leaves[$x]." more than that of your account ! "));
 									}
 								}
 							}
@@ -158,6 +163,18 @@ if(isset($user))
 						$department = $engineering[$t]; 
 					}
 				}
+				if ($strm != ''){
+					$strm = 'The Details of class engage is mentioned as follows.<br><br>
+					<table style = "width: 100%; border-collapse: collapse;" id = "engagement">
+							<tr><th>Date </th>
+							<th>Day</th>		
+							<th>Period</th>
+							<th>Semester</th>
+							<th>Branch</th>
+							<th>Subject</th>
+							<th style = "max-width: 60px;">Engage by faculty Name</th></tr>
+							'.$strm.'</table>';
+				}
 				$pdf_content='
 							<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 							<html xmlns="http://www.w3.org/1999/xhtml">
@@ -166,7 +183,7 @@ if(isset($user))
 							</head>
 						
 							<style type="text/css">							
-								#pdf_header, #pdf_container{ border: 1px solid black; padding:10px; align : center;}				
+								#pdf_header, #pdf_container{ padding:10px; align : center;}				
 								#pdf_header{ margin:10px auto 0px; border-bottom:none; font-family: sans-serif; line-height:1.6; }				
 								table{width:100%;  border: 1px solid black; }				
 								#pdf_container{margin:0px auto; }
@@ -189,22 +206,13 @@ if(isset($user))
 							Respected Sir,<br><br>
 
 							With due Respect I want to inform you that I Mr/Mrs '.$empname.' would like to take leave of '.$leavedays.'
-							days from '.$leavedate.' to '.$endleavedate.'-----------------------.<br>
+							days from '.$leavedate.' to '.$endleavedate.' because '.$leavereason.'.<br>
 
-							Kindly grant me leave of absense. The Details of class engage is mentioned as follows.<br><br>
-							<table style = "width: 100%; border-collapse: collapse;" id = "engagement">
-									<tr><th>Date </th>
-									<th>Day</th>		
-									<th>Period</th>
-									<th>Semester</th>
-									<th>Branch</th>
-									<th>Subject</th>
-									<th style = "max-width: 60px;">Engage by faculty Name</th></tr>
-									'.$strm.'					
+							Kindly grant me leave of absense. '.$strm.'					
 									
-								</table>
+								<br><br>
 
-								<span>Thank You.</span><br>
+								<span>Thank You.</span><br><br><br>
 
 
 								<div style = "float:right;">

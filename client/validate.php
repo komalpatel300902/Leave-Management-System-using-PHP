@@ -20,8 +20,7 @@ if($result->num_rows>0){
 				$username = $username.$name;
 			$_SESSION["user"] = $username;
 			$dept = $row["dept"];
-			// $status = update_leaves($username,$dept);
-				$status = true;
+			$status = update_leaves($username,$dept);
 			if($status  === true)
 				{
 				header('location:home.php?msg='.urlencode('Your Leaves Were Updated Successfully !'));
@@ -31,12 +30,13 @@ if($result->num_rows>0){
 				header('location:index.php');
 			}
 		}
-		// else{
-		// 	header('location:index.php?err='.urlencode('Username Or Password Incorrect'. $username . $password));
-		// 	exit();
-		// }
+		
 		
     }
+	
+	header('location:index.php?err='.urlencode('Username Or Password Incorrect'. $username . $password));
+	exit();
+
 }
 else
 	{

@@ -21,10 +21,10 @@ if(isset($_SESSION['user']))
 	echo "<tr><td>Username : </td><td><input type = 'text' name = 'uname' class = 'textbox shadow selected' placeholder = 'Your Username'></td></tr><br/>";
 	echo "<tr><td>Password : </td><td><input type = 'password' name = 'pass' class = 'textbox shadow selected' placeholder = 'Your Password'></td></tr><br/>";
 	echo "<tr><td><input type = 'submit' value = 'Login' class = 'login-button shadow'></td>";
-	echo "<td><a href = 'passrecovery.php'>Forgot Your password ?</a></td></tr>";
+	// echo "<td><a href = 'passrecovery.php'>Forgot Your password ?</a></td></tr>";
 	echo "</table>";
 	echo "</form>";
-	echo "<p>Your Password is your Username (dd-mm-yyyy)</p>";
+	// echo "<p>Your Password is your Username (dd-mm-yyyy)</p>";
 	echo "</center>";
 	echo "</div>";
 	echo "</body>";

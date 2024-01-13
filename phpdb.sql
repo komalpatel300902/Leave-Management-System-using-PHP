@@ -48,8 +48,8 @@ CREATE TABLE `admins` (
 -- Dumping data for table `admins`
 --
 
-INSERT INTO `admins` (`id`, `username`, `password`, `Dept`, `SetSickLeave`, `SetCasualLeave`, `SetEarnLeave`) VALUES
-(1, 'ce_hod', '4e71ec6e6f0bf98ed88fc210f945ec9dc5897f46', 'CSE', 20, 25, 10),
+INSERT INTO `admins` (`id`, `username`, `password`, `Dept`, `SetSickLeave`, `SetCasualLeave`, `SetEarnLeave`,`SetCommutionLeave`,`SetCompassionateLeave`,`SetNursingLeave`,`SetStudyLeave`,`SetMaternityLeave`,`SetPaternityLeave`) VALUES
+(1, 'cse_hod', '4e71ec6e6f0bf98ed88fc210f945ec9dc5897f46', 'CSE', 20, 25, 10),
 (2, 'et&t_hod', '5ad239cb8a44f659eaaee0aa1ea5b94947abe557', 'ET&T', 11, 11, 11),
 (3, 'mech_hod', '8ead6354003c3f4fa80c692081bc8265af11220e', 'MECH', 15, 10, 30),
 (4, 'civil_hod', '69e8ee2d1cc1f429960a8637125d15e19e9daa8b', 'CIVIL', 15, 10, 30),
@@ -104,7 +104,8 @@ CREATE TABLE `emp_leaves` (
   `principal_status` varchar(30) DEFAULT 'Requested',
   `StartDate` date NOT NULL,
   `EndDate` date NOT NULL,
-  `Dept` varchar(10) NOT NULL
+  `Dept` varchar(10) NOT NULL,
+  `principal_status` varchar(30)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 

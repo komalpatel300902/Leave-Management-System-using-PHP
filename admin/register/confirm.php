@@ -140,13 +140,13 @@ else
 			echo "Employment Type : ".$emptype." ; ".$empfee."<br/>";
 			echo "Date Of Birth : ".$dob2."<br/>";
 			/*Thsi section is of Teacher */
-			$msg = "Joining Request sent Successfully! <br><br>Username : ".$uname."<br>Employee Name : ".$empname."<br>Password : ".$pass."<br>Department : ".$dept."<br>Email ID : ".$mailid."<br>Date Of Joining (yyyy/mm/dd): ".$doj."<br><br><br>Thanks For Registering with us<br><br><br><br>Regards,<br>webadmin, Leave Management System";
+			$msg = "Joining Request sent Successfully! <br><br>Username : ".$uname."<br>Employee Name : ".$empname."<br>Department : ".$dept."<br>Email ID : ".$mailid."<br>Date Of Joining (yyyy/mm/dd): ".$doj."<br><br><br>Thanks For Registering with us<br><br><br><br>Regards,<br>webadmin, Leave Management System";
 			$subject = "Joining Request";
 			$to = $mailid;
 			$status = mailer($to,$msg,$subject);
 			/* THIS MAIL WILL GO TO HOD*/
 			$msg = "<bold>Joining Request!<bold> <br><br>Employee Name : ".$empname."<br>Department : ".$dept."<br>Email ID : ".$mailid."<br>Date Of Joining (yyyy/mm/dd): ".$doj."<br><br><br>Thanks For Registering with us<br><br><br><br>Regards,<br>webadmin, Leave Management System";
-			$subject = "Joining Request of <bold>".$empname."<bold>";
+			$subject = "Joining Request of ".$empname;
 			$to = $hodmailid;
 			$status = mailer($to,$msg,$subject);
 			if($status == true)
@@ -184,8 +184,7 @@ else
 		<body>
 		<div id="pdf_header" >
 		<table border="0" cellspacing="1" cellpadding="2">
-		<tr id="hdRow">
-			<td width="20%"><img src="GECR.jpg" height = 50 width = 50></td>				
+		<tr id="hdRow">				
 			<td width="30%" text-align="left">Government Engineering College<br/>Sejbahar, 492015</td>
 			</tr>
 		</table>
@@ -194,9 +193,6 @@ else
 		<table border="0" cellspacing="1" cellpadding="2">
 		<tr bgcolor="#3c4142" style="color:#FFF"><td colspan="3" align="left">Request for Joining GECR : '.$empname.'</td></tr>
 			</table>
-		<table border="0" cellspacing="1" cellpadding="2">
-			<tr bgcolor="#3c4142" style="color:#FFF"><td colspan="3" align="left"><img src = "profile_picture/Male.png"></td></tr>
-				</table>
 		<table>
 		<tr><th>Employee Name : </th><td>'.$empname.'</td></tr>
 		<tr><th>Employee Designation : </th><td>'.$designation.'</td></tr>

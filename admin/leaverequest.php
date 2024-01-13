@@ -151,11 +151,11 @@ if(isset($_SESSION['adminuser']))
 		// echo "<br/><tr><td><input type = 'submit' value = 'Request a Leave' class = 'login-button shadow'></td></tr>";
 		echo "</table>";
 
-		echo"<div >
-		<span class = 'textbox shadow selected' style = 'border:0px;'>Number of engagement you want to make</span>
-		<input type = 'number' class = 'textbox shadow selected' name ='rownumber' id = 'nvalue'>
-		<span class = 'textbox shadow selected' name = 'submit1' id ='btn'>Click Me</span>
-		</div>";
+		// echo"<div >
+		// <span class = 'textbox shadow selected' style = 'border:0px;'>Number of engagement you want to make</span>
+		// <input type = 'number' class = 'textbox shadow selected' name ='rownumber' id = 'nvalue'>
+		// <span class = 'textbox shadow selected' name = 'submit1' id ='btn'>Click Me</span>
+		// </div>";
 
 		echo"<div id = 'division' >
 

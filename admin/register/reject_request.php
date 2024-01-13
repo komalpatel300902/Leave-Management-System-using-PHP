@@ -24,7 +24,7 @@ if(isset($_SESSION['adminuser']))
 	// $sql = "SELECT * FROM emp_leaves WHERE id='".$id."'";
 	$sql2 = "DELETE FROM JOINING_REQUEST WHERE EmpEmail = '".$id."' AND id = '".$empid."'";
 	$result = $conn->query($sql2);
-	$msg = "Your joining request Has Been <bold>Declined<bold> !";							
+	$msg = "Your joining request Has Been Declined !";							
 	$subject = "Joining Request Declined";
 	$status = mailer($email,$msg,$subject);
 	$conn->close();

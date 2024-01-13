@@ -57,68 +57,68 @@ if(isset($_SESSION['principal']))
 					$diff8 = $maternityleave-$leavedays;
 					$email = $row2["EmpEmail"];
 					
-					// if($row["LeaveType"] == "Earn Leave")
-					// 	{
-					// 	if($diff1 < 0)
-					// 		echo "Processing Error !";
-					// 	else
-					// 		$sql3 = "UPDATE employees SET EarnLeave = '".$diff1."' WHERE id = '".$empid."'";
-					// 	}
-					// else if($row["LeaveType"] == "Sick Leave")
-					// 	{
-					// 	if($diff2 < 0)
-					// 		echo "Processing Error !";
-					// 	else
-					// 		$sql3 = "UPDATE employees SET SickLeave = '".$diff2."' WHERE id = '".$empid."'";
-					// 	}
-					// else if($row["LeaveType"] == "Casual Leave")
-					// 	{
-					// 	if($diff3 < 0)
-					// 		echo "Processing Error !";
-					// 	else
-					// 		$sql3 = "UPDATE employees SET CasualLeave = '".$diff3."' WHERE id = '".$empid."'";
-					// 	}
-					// else if($row["LeaveType"] == "Commution Leave")
-					// 	{
-					// 	if($diff3 < 0)
-					// 		echo "Processing Error !";
-					// 	else
-					// 		$sql3 = "UPDATE employees SET CommutionLeave = '".$diff4."' WHERE id = '".$empid."'";
-					// 	}
-					// else if($row["LeaveType"] == "Copassionate Leave")
-					// 	{
-					// 	if($diff3 < 0)
-					// 		echo "Processing Error !";
-					// 	else
-					// 		$sql3 = "UPDATE employees SET CopassionateLeave = '".$diff5."' WHERE id = '".$empid."'";
-					// 	}
-					// else if($row["LeaveType"] == "Nursing Leave")
-					// 	{
-					// 	if($diff3 < 0)
-					// 		echo "Processing Error !";
-					// 	else
-					// 		$sql3 = "UPDATE employees SET NursingLeave = '".$diff6."' WHERE id = '".$empid."'";
-					// 	}
-					// else if($row["LeaveType"] == "Study Leave")
-					// 	{
-					// 	if($diff3 < 0)
-					// 		echo "Processing Error !";
-					// 	else
-					// 		$sql3 = "UPDATE employees SET StudyLeave = '".$diff7."' WHERE id = '".$empid."'";
-					// 	}
-					// else if($row["LeaveType"] == "Maternity Leave")
-					// 	{
-					// 	if($diff3 < 0)
-					// 		echo "Processing Error !";
-					// 	else
-					// 		$sql3 = "UPDATE employees SET MaternityLeave = '".$diff8."' WHERE id = '".$empid."'";
-					// 	}
+					if($row["LeaveType"] == "Earn Leave")
+						{
+						if($diff1 < 0)
+							echo "Processing Error !";
+						else
+							$sql3 = "UPDATE employees SET EarnLeave = '".$diff1."' WHERE id = '".$empid."'";
+						}
+					else if($row["LeaveType"] == "Sick Leave")
+						{
+						if($diff2 < 0)
+							echo "Processing Error !";
+						else
+							$sql3 = "UPDATE employees SET SickLeave = '".$diff2."' WHERE id = '".$empid."'";
+						}
+					else if($row["LeaveType"] == "Casual Leave")
+						{
+						if($diff3 < 0)
+							echo "Processing Error !";
+						else
+							$sql3 = "UPDATE employees SET CasualLeave = '".$diff3."' WHERE id = '".$empid."'";
+						}
+					else if($row["LeaveType"] == "Commution Leave")
+						{
+						if($diff3 < 0)
+							echo "Processing Error !";
+						else
+							$sql3 = "UPDATE employees SET CommutionLeave = '".$diff4."' WHERE id = '".$empid."'";
+						}
+					else if($row["LeaveType"] == "Copassionate Leave")
+						{
+						if($diff3 < 0)
+							echo "Processing Error !";
+						else
+							$sql3 = "UPDATE employees SET CopassionateLeave = '".$diff5."' WHERE id = '".$empid."'";
+						}
+					else if($row["LeaveType"] == "Nursing Leave")
+						{
+						if($diff3 < 0)
+							echo "Processing Error !";
+						else
+							$sql3 = "UPDATE employees SET NursingLeave = '".$diff6."' WHERE id = '".$empid."'";
+						}
+					else if($row["LeaveType"] == "Study Leave")
+						{
+						if($diff3 < 0)
+							echo "Processing Error !";
+						else
+							$sql3 = "UPDATE employees SET StudyLeave = '".$diff7."' WHERE id = '".$empid."'";
+						}
+					else if($row["LeaveType"] == "Maternity Leave")
+						{
+						if($diff3 < 0)
+							echo "Processing Error !";
+						else
+							$sql3 = "UPDATE employees SET MaternityLeave = '".$diff8."' WHERE id = '".$empid."'";
+						}
 
 
 
-					if(TRUE)
+					if($conn->query($sql3) === TRUE);
 							{
-							$sql4 = "UPDATE emp_leaves SET Status = 'Granted' WHERE id = '".$id."'";
+							$sql4 = "UPDATE emp_leaves SET principal_status = 'Granted',Status = 'Granted'  WHERE id = '".$id."'";
 							if($conn->query($sql4) === TRUE)
 								{
 								$msg = "Your Leave Has Been Granted Successfully !<br>Employee Name : ".$row['EmpName']."<br>Leave Type : ".$row['LeaveType']."<br>No. Of Leave Days : ".$row['LeaveDays']."<br>Starting Date : ".$row['StartDate']."<br>End date : ".$row['EndDate']."<br><br><br>Thanks,<br>nwebadmin, Leave Management System";

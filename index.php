@@ -27,7 +27,7 @@ footer {
 <div class="heading"><h2>Welcome !</h2>
 <p>Leave Management System</p>
 <p> A Project for Minors </p>
-<footer>&copy; 2023</footer>
+<!-- <footer>&copy; 2023</footer> -->
 </center>
 </div>
 </body>

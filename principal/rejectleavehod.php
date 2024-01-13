@@ -28,20 +28,35 @@ if(isset($_SESSION['principal']))
 	{
         if(TRUE)
         {
-        $sql4 = "UPDATE hod_leaves SET Status = 'Rejected' WHERE id = '".$id."'";
-        if($conn->query($sql4) === TRUE)
-            {
-            $msg = "Your Leave Has Been Granted Successfully !<br>Employee Name : ".$row['EmpName']."<br>Leave Type : ".$row['LeaveType']."<br>No. Of Leave Days : ".$row['LeaveDays']."<br>Starting Date : ".$row['StartDate']."<br>End date : ".$row['EndDate']."<br><br><br>Thanks,<br>nwebadmin, Leave Management System";
-            $subject = "Leave Request Granted!";
-            $status = mailer($email,$msg,$subject);
-            
-            if($status === TRUE)
-                {
-                echo "The Leave Request Status mail For ".$row['EmpName']." Has been sent to his/her registered email address !<br/>";
+            $sql2 = "SELECT id,email FROM admins WHERE id = '".$empid."'";
+			$result2 = $conn->query($sql2);
+			if($result2->num_rows > 0)
+				{
+				while($row2 = $result2->fetch_assoc())
+					{
+					$email = $row2['email'];
+                    }
                 }
-            echo "<script>
-                window.location.href='view_leaves.php';
-                </script>";
+
+            $sql = "SELECT * FROM hod_leaves where id = '".$id."'";
+            $result = $conn->query($sql);
+            if($result->num_rows > 0){
+                while($row = $result->fetch_assoc()){
+                    $sql4 = "UPDATE hod_leaves SET Status = 'Rejected' WHERE id = '".$id."'";
+                    if($conn->query($sql4) === TRUE){
+                        $msg = "Your Leave Has Been Rejected!<br>Employee Name : ".$row['EmpName']."<br>Leave Type : ".$row['LeaveType']."<br>No. Of Leave Days : ".$row['LeaveDays']."<br>Starting Date : ".$row['StartDate']."<br>End date : ".$row['EndDate']."<br><br><br>Thanks,<br>nwebadmin, Leave Management System";
+                        $subject = "Leave Request Granted!";
+                        $status = mailer($email,$msg,$subject);
+                        
+                        if($status === TRUE)
+                            {
+                            echo "The Leave Request Status mail For ".$row['EmpName']." Has been sent to his/her registered email address !<br/>";
+                            }
+                        echo "<script>
+                            window.location.href='view_leaves.php';
+                            </script>";
+                    }
+                }
             }
         }
 	// $sql = "SELECT id,EmpName,LeaveType,RequestDate,Status,LeaveDays,StartDate,EndDate FROM emp_leaves WHERE id='".$id."'";
