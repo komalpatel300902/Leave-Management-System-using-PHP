@@ -65,6 +65,7 @@ INSERT INTO `admins` (`id`, `username`, `password`, `Dept`, `SetSickLeave`, `Set
 
 CREATE TABLE `employees` (
   `id` int(11) NOT NULL,
+  `empid` varchar(30) UNIQUE,
   `UserName` varchar(50) NOT NULL,
   `EmpPass` varchar(200) NOT NULL,
   `EmpName` varchar(50) NOT NULL,
@@ -101,7 +102,6 @@ CREATE TABLE `emp_leaves` (
   `RequestDate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `LeaveDays` int(11) NOT NULL,
   `Status` varchar(20) NOT NULL DEFAULT 'Requested',
-  `principal_status` varchar(30) DEFAULT 'Requested',
   `StartDate` date NOT NULL,
   `EndDate` date NOT NULL,
   `Dept` varchar(10) NOT NULL,
