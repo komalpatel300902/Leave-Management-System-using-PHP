@@ -32,15 +32,15 @@ CREATE TABLE `admins` (
   `username` varchar(50) NOT NULL,
   `password` varchar(200) NOT NULL,
   `Dept` varchar(50) NOT NULL,
-  `SetSickLeave` int(11) NOT NULL DEFAULT '15',
-  `SetCasualLeave` int(11) NOT NULL DEFAULT '10',
-  `SetEarnLeave` int(11) NOT NULL DEFAULT '30',
-  `SetCommutionLeave` int(11) NOT NULL DEFAULT '30',
-  `SetCompassionateLeave` int(11) NOT NULL DEFAULT '30',
-  `SetNursingLeave` int(11) NOT NULL DEFAULT '30',
-  `SetStudyLeave` int(11) NOT NULL DEFAULT '30',
-  `SetMaternityLeave` int(11) NOT NULL DEFAULT '30',
-  `SetPaternityLeave` int(11),
+  `SetSickLeave` int(11) NOT NULL DEFAULT 15,
+  `SetCasualLeave` int(11) NOT NULL DEFAULT 15,
+ `SetEarnLeave` int(11) NOT NULL DEFAULT 30,
+  `SetCommutionLeave` int(11) NOT NULL DEFAULT 30,
+  `SetCompassionateLeave` int(11) NOT NULL DEFAULT 30,
+  `SetNursingLeave` int(11) NOT NULL DEFAULT 30,
+  `SetStudyLeave` int(11) NOT NULL DEFAULT 30,
+  `SetMaternityLeave` int(11) NOT NULL DEFAULT 30,
+  `SetPaternityLeave` int(11) 15,
   `email` varchar(50),
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -54,7 +54,7 @@ INSERT INTO `admins` (`id`, `username`, `password`, `Dept`, `SetSickLeave`, `Set
 (3, 'mech_hod', '8ead6354003c3f4fa80c692081bc8265af11220e', 'MECH', 15, 10, 30),
 (4, 'civil_hod', '69e8ee2d1cc1f429960a8637125d15e19e9daa8b', 'CIVIL', 15, 10, 30),
 (5, 'eee_hod', '8723baf2cf4683b85ee1c815495dd27835ab6fa7', 'EEE', 15, 10, 30),
-(6, 'cl_hod', 'ef4999d1761ed18bf1a96c80fe81a0a117cace25', 'CL', 15, 10, 30),
+(6, 'cosc_hod', 'ef4999d1761ed18bf1a96c80fe81a0a117cace25', 'COSC', 15, 10, 30),
 (7, 'ch_hod', '72c5a4143e012d2d999449d7d42bbc63d5693779', 'CH', 15, 10, 30);
 
 -- --------------------------------------------------------
@@ -146,6 +146,9 @@ ALTER TABLE `joining_request`
 -- Indexes for table `emp_leaves`
 --
 ALTER TABLE `emp_leaves`
+  ADD PRIMARY KEY (`id`);
+
+ALTER TABLE `hod_leaves`
   ADD PRIMARY KEY (`id`);
 
 --
