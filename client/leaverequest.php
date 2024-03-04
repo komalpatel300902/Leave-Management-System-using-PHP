@@ -7,6 +7,7 @@ echo "<div class = 'textview' >";
 include 'connect.php';
 echo "<h1>Leave Management System</h1>";
 include 'clientnavi.php';
+include 'period_searcher.php';
 session_start();
 
 if(isset($_SESSION['user']))
@@ -158,66 +159,10 @@ if(isset($_SESSION['user']))
 		echo"<div id = 'division' >
 
 		</div>";
-
-		echo"<script>
-
-		function getDatesInRange(startDate, endDate) {
-			const date = new Date(startDate.getTime());
-		
-			var s = '';
-		
-			while (date <= endDate) {
-			s = s+ '<option>'+date.getDate()+'-'+(date.getMonth()+1)+ '-'+date.getFullYear() +'</option>';
-			date.setDate(date.getDate() + 1);
-			}
-		
-			return s;
-		}
-		
-		//   const d1 = new Date('2022-01-18');
-		//         const d2 = new Date('2022-01-24'); 
-		
-		//   console.log(getDatesInRange(d1, d2));
-		
-				
-		var days = daysdifference('03/19/2021', '03/31/2021');  
-		   
-		console.log(days);  
-			
-		function daysdifference(firstDate, secondDate){  
-			var startDay = new Date(firstDate);  
-			var endDay = new Date(secondDate);  
-		
-		    
-			var millisBetween = startDay.getTime() - endDay.getTime();  
-		
-		  
-			var days = millisBetween / (1000 * 3600 * 24);       
-			return Math.round(Math.abs(days));  
-		}  
-
-
-
-		$('#btn').click(function(){
-		console.log('i am in my function');
-		var n = $('#nvalue').val();
-
-		if(n==0){
-			$('#division').html(``);
-		}
-
-
-		if (n>0){
-			console.log($('#leaveyear').val() +'-'+$('#leavemonth').val()+'-'+$('#leavedate').val());
-			var startdate = $('#leaveyear').val() +'-'+$('#leavemonth').val()+'-'+$('#leavedate').val();
-			var enddate = $('#endleaveyear').val() +'-'+$('#endleavemonth').val()+'-'+$('#endleavedate').val()
-		const d1 = new Date(startdate);
-		const d2 = new Date(enddate);
-		console.log(d1,d2);
-		var s = getDatesInRange(d1, d2);
-		
-			$('#division').html(`<table>
-			<tr>
+		echo "<table>";
+		$s = data_printer(array("2024/02/27"),"Arzoo pandey");
+		if ($s != ""){
+			echo "	<tr>
 			<th>Date </th>
 			<th>Day</th>
 			<th>Period</th>		
@@ -225,60 +170,142 @@ if(isset($_SESSION['user']))
 			<th>Branch</th>
 			<th>Subject</th>
 			<th>Engaged by faculty Name</th>
-			</tr>
-			</table>`);
-			var j = 0; 
-			
-			for(var i = 0; i < n; i++){
-				
-				$('#division').append(`<table> 
-				<tr>
-				<td><select type = 'text' name = 'value`+ ++j +`' class = 'textbox shadow selected' style='width:90px;'>`
-			
-				+s+`</select></td>
-
-				<td><select type='text' name = 'value`+ ++j +`' class = 'textbox shadow selected' style='width:100px;'>
-				<option value = 'Monday'>Monday</option>
-				<option value = 'Tuesday'>Tuesday</option>
-				<option value = 'Wednesday'>Wednesday</option>
-				<option value = 'Thrusday'>Thrusday</option>
-				<option value = 'Friday'>Friday</option>
-				<option value = 'Saturday'>Saturday</option>
-				</select></td>
-				<td><select type='text' name = 'value`+ ++j +`' class = 'textbox shadow selected' style='width:50px;'>
-				<option value = '1'>1</option>
-				<option value = '2'>2</option>
-				<option value = '3'>3</option>
-				<option value = '4'>4</option>
-				<option value = '5'>5</option>
-				<option value = '6'>6</option>
-				<option value = '7'>7</option>
-				<option value = '8'>8</option></select></td>		
-				<td><select type='number' min = '1' max = '8' step = '1' name = 'value`+ ++j +`' class = 'textbox shadow selected' style='width:40px;'>
-				<option value = '1'>1</option>
-				<option value = '2'>2</option>
-				<option value = '3'>3</option>
-				<option value = '4'>4</option>
-				<option value = '5'>5</option>
-				<option value = '6'>6</option>
-				<option value = '7'>7</option>
-				<option value = '8'>8</option></select></td>
-				<td><select type='text' name = 'value`+ ++j +`' class = 'textbox shadow selected' style='width:50px;'>
-				<option value = 'CSE'>CSE</option>
-				<option value = 'EEE'>EEE</option>
-				<option value = 'CIVIL'>CIVIL</option>
-				<option value = 'MECH'>MECH</option>
-				<option value = 'ET&T'>ET&T</option></select></td>
-				<td><input type='text' name = 'value`+ ++j +`' class = 'textbox shadow selected' style='width:100px;'></td>
-				
-				<td><input type='text' name = 'value`+ ++j +`' class = 'textbox shadow selected' style='width:110px;'></td>
-				</tr>`);
-			}
-			$('#division').append('</table>');
+			";
+			// echo $s;
 		}
+		
+		echo "</table>";
 
+		echo"<script>
+		$('#btn').click(function(){
+			console.log('i am in cansole');
+			var startdate = $('#leaveyear').val() +'/'+$('#leavemonth').val()+'/'+$('#leavedate').val();
+		 	var enddate = $('#endleaveyear').val() +'/'+$('#endleavemonth').val()+'/'+$('#endleavedate').val()
+			console.log(enddate);
+			console.log(startdate);
+			$('#division').append(`".$s."`+ startdate +`startdate `);
 		});
 		</script>";
+		// echo"<script>
+
+		// function getDatesInRange(startDate, endDate) {
+		// 	const date = new Date(startDate.getTime());
+		
+		// 	var s = '';
+		
+		// 	while (date <= endDate) {
+		// 	s = s+ '<option>'+date.getDate()+'-'+(date.getMonth()+1)+ '-'+date.getFullYear() +'</option>';
+		// 	date.setDate(date.getDate() + 1);
+		// 	}
+		
+		// 	return s;
+		// }
+		
+		// //   const d1 = new Date('2022-01-18');
+		// //         const d2 = new Date('2022-01-24'); 
+		
+		// //   console.log(getDatesInRange(d1, d2));
+		
+				
+		// var days = daysdifference('03/19/2021', '03/31/2021');  
+		   
+		// console.log(days);  
+			
+		// function daysdifference(firstDate, secondDate){  
+		// 	var startDay = new Date(firstDate);  
+		// 	var endDay = new Date(secondDate);  
+		
+		    
+		// 	var millisBetween = startDay.getTime() - endDay.getTime();  
+		
+		  
+		// 	var days = millisBetween / (1000 * 3600 * 24);       
+		// 	return Math.round(Math.abs(days));  
+		// }  
+
+
+
+		// $('#btn').click(function(){
+		// console.log('i am in my function');
+		// var n = $('#nvalue').val();
+
+		// if(n==0){
+		// 	$('#division').html(``);
+		// }
+
+
+		// if (n>0){
+		// 	console.log($('#leaveyear').val() +'-'+$('#leavemonth').val()+'-'+$('#leavedate').val());
+		// 	var startdate = $('#leaveyear').val() +'-'+$('#leavemonth').val()+'-'+$('#leavedate').val();
+		// 	var enddate = $('#endleaveyear').val() +'-'+$('#endleavemonth').val()+'-'+$('#endleavedate').val()
+		// const d1 = new Date(startdate);
+		// const d2 = new Date(enddate);
+		// console.log(d1,d2);
+		// var s = getDatesInRange(d1, d2);
+		
+		// 	$('#division').html(`<table>
+		// 	<tr>
+		// 	<th>Date </th>
+		// 	<th>Day</th>
+		// 	<th>Period</th>		
+		// 	<th>Semester</th>
+		// 	<th>Branch</th>
+		// 	<th>Subject</th>
+		// 	<th>Engaged by faculty Name</th>
+		// 	</tr>
+		// 	</table>`);
+		// 	var j = 0; 
+			
+		// 	for(var i = 0; i < n; i++){
+				
+		// 		$('#division').append(`<table> 
+		// 		<tr>
+		// 		<td><select type = 'text' name = 'value`+ ++j +`' class = 'textbox shadow selected' style='width:90px;'>`
+			
+		// 		+s+`</select></td>
+
+		// 		<td><select type='text' name = 'value`+ ++j +`' class = 'textbox shadow selected' style='width:100px;'>
+		// 		<option value = 'Monday'>Monday</option>
+		// 		<option value = 'Tuesday'>Tuesday</option>
+		// 		<option value = 'Wednesday'>Wednesday</option>
+		// 		<option value = 'Thrusday'>Thrusday</option>
+		// 		<option value = 'Friday'>Friday</option>
+		// 		<option value = 'Saturday'>Saturday</option>
+		// 		</select></td>
+		// 		<td><select type='text' name = 'value`+ ++j +`' class = 'textbox shadow selected' style='width:50px;'>
+		// 		<option value = '1'>1</option>
+		// 		<option value = '2'>2</option>
+		// 		<option value = '3'>3</option>
+		// 		<option value = '4'>4</option>
+		// 		<option value = '5'>5</option>
+		// 		<option value = '6'>6</option>
+		// 		<option value = '7'>7</option>
+		// 		<option value = '8'>8</option></select></td>		
+		// 		<td><select type='number' min = '1' max = '8' step = '1' name = 'value`+ ++j +`' class = 'textbox shadow selected' style='width:40px;'>
+		// 		<option value = '1'>1</option>
+		// 		<option value = '2'>2</option>
+		// 		<option value = '3'>3</option>
+		// 		<option value = '4'>4</option>
+		// 		<option value = '5'>5</option>
+		// 		<option value = '6'>6</option>
+		// 		<option value = '7'>7</option>
+		// 		<option value = '8'>8</option></select></td>
+		// 		<td><select type='text' name = 'value`+ ++j +`' class = 'textbox shadow selected' style='width:50px;'>
+		// 		<option value = 'CSE'>CSE</option>
+		// 		<option value = 'EEE'>EEE</option>
+		// 		<option value = 'CIVIL'>CIVIL</option>
+		// 		<option value = 'MECH'>MECH</option>
+		// 		<option value = 'ET&T'>ET&T</option></select></td>
+		// 		<td><input type='text' name = 'value`+ ++j +`' class = 'textbox shadow selected' style='width:100px;'></td>
+				
+		// 		<td><input type='text' name = 'value`+ ++j +`' class = 'textbox shadow selected' style='width:110px;'></td>
+		// 		</tr>`);
+		// 	}
+		// 	$('#division').append('</table>');
+		// }
+
+		// });
+		// </script>";
 
 
 		echo "<script>

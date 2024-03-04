@@ -49,11 +49,11 @@ CREATE TABLE `admins` (
 --
 
 INSERT INTO `admins` (`id`, `username`, `password`, `Dept`, `SetSickLeave`, `SetCasualLeave`, `SetEarnLeave`,`SetCommutionLeave`,`SetCompassionateLeave`,`SetNursingLeave`,`SetStudyLeave`,`SetMaternityLeave`,`SetPaternityLeave`) VALUES
-(1, 'cse_hod', '4e71ec6e6f0bf98ed88fc210f945ec9dc5897f46', 'CSE', 20, 25, 10),
-(2, 'et&t_hod', '5ad239cb8a44f659eaaee0aa1ea5b94947abe557', 'ET&T', 11, 11, 11),
-(3, 'mech_hod', '8ead6354003c3f4fa80c692081bc8265af11220e', 'MECH', 15, 10, 30),
-(4, 'civil_hod', '69e8ee2d1cc1f429960a8637125d15e19e9daa8b', 'CIVIL', 15, 10, 30),
-(5, 'eee_hod', '8723baf2cf4683b85ee1c815495dd27835ab6fa7', 'EEE', 15, 10, 30),
+(1, 'cse_hod', 'cse_hod', 'CSE', 20, 25, 10),
+(2, 'et&t_hod', 'et&t_hod', 'ET&T', 11, 11, 11),
+(3, 'mech_hod', 'mech_hod', 'MECH', 15, 10, 30),
+(4, 'civil_hod', 'civil_hod', 'CIVIL', 15, 10, 30),
+(5, 'eee_hod', 'eee_hod', 'EEE', 15, 10, 30),
 (6, 'cosc_hod', 'ef4999d1761ed18bf1a96c80fe81a0a117cace25', 'COSC', 15, 10, 30),
 (7, 'ch_hod', '72c5a4143e012d2d999449d7d42bbc63d5693779', 'CH', 15, 10, 30);
 
