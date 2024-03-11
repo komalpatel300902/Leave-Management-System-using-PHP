@@ -73,27 +73,30 @@ function period_finder_for_engagement($subject, $day , $wsheet){
     "Friday" => 6,
     "Saturday" => 7);
     // $subject = $subjects[0];
-    $day_index = $day_mapping[$day];
-    // echo $day_index;
-    $column_count = $wsheet->getHighestDataColumn();
-    $count_column = PHPExcel_cell :: columnIndexFromString($column_count);
     $periods = array();
-    for ($x = 0; $x < $count_column; $x++){
-        $value = $wsheet->getCell(PHPExcel_cell :: stringFromColumnIndex($x).$day_index);
-        // echo $value;
-        $splited_value = explode("/",$value);
-        for($y = 0; $y < count($splited_value);$y++){
-            if ($splited_value[$y] == $subject){
-                if ($x <=4){
-                    array_push($periods,$x-1);
-                }
-                elseif ($x > 4){
-                    array_push($periods,$x-2);
-                }
-                
-            }
-        }
+    if ($day != "Sunday"){
+        $day_index = $day_mapping[$day];
+        // echo $day_index;
+        $column_count = $wsheet->getHighestDataColumn();
+        $count_column = PHPExcel_cell :: columnIndexFromString($column_count);
         
+        for ($x = 0; $x < $count_column; $x++){
+            $value = $wsheet->getCell(PHPExcel_cell :: stringFromColumnIndex($x).$day_index);
+            // echo $value;
+            $splited_value = explode("/",$value);
+            for($y = 0; $y < count($splited_value);$y++){
+                if ($splited_value[$y] == $subject){
+                    if ($x <=4){
+                        array_push($periods,$x-1);
+                    }
+                    elseif ($x > 4){
+                        array_push($periods,$x-2);
+                    }
+                    
+                }
+            }
+            
+        }
     }
     return $periods;
     /*
@@ -114,6 +117,8 @@ function data_printer($dates,$teacher_name){
     $s = "";
     $len_dates = count($dates);
     echo "<br>";
+    $row_number = 0;
+    
     for($date_count = 0; $date_count < $len_dates; $date_count++){
         $date = $dates[$date_count];
         $day = day_extractor_from_date($date)[0];
@@ -135,6 +140,12 @@ function data_printer($dates,$teacher_name){
                         for($period = 0; $period < count($periods); $period++){
                             $period_number = $periods[$period];
                             $s = $s."<tr>
+                            <input type = 'hidden' name = 'value".++$value_count."' value = '".$date_proper_format."'>
+                            <input type = 'hidden' name = 'value".++$value_count."' value = '".$day."'>
+                            <input type = 'hidden' name = 'value".++$value_count."' value = '".$period_number."'>
+                            <input type = 'hidden' name = 'value".++$value_count."' value = '".$sem."'>
+                            <input type = 'hidden' name = 'value".++$value_count."' value = '".$branch."'>
+                            <input type = 'hidden' name = 'value".++$value_count."' value = '".$sub."'>
                             <th>".$date_proper_format."</th>
                             <th>".$day."</th>
                             <th>".$period_number."</th>
@@ -143,6 +154,7 @@ function data_printer($dates,$teacher_name){
                             <th>".$sub."</th>
                             <th> <input type = 'text' name = value".++$value_count." >
                             </tr>";
+                            $row_number++;
                         }
                     }
                 }
@@ -151,6 +163,8 @@ function data_printer($dates,$teacher_name){
         
         // for ($sem_count = 0;)
     }
+    $str = "<tr> <input type = 'hidden' name = 'rownumber' value = '".$row_number."'></tr>";
+    $s = $s.$str;
     return $s;
 }
 

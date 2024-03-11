@@ -4,7 +4,7 @@ function update_leaves($user,$dept)
 	include 'connect.php';
 	$current_date = strtotime(date("Y-m-d"));
 	
-	$sql2 = "SELECT SetSickLeave,SetCasualLeave,SetEarnLeave,SetCommutionLeave,SetMaternityLeave,SetNursingLeave,SetPaternityLeave,SetStudyLeave,SetCompassionateLeave,Dept FROM admins WHERE Dept = '".$dept."'";
+	$sql2 = "SELECT SetSickLeave,SetCasualLeave,SetEarnLeave,SetCommutionLeave,SetMaternityLeave,SetNursingLeave,SetPaternityLeave,SetStudyLeave,SetOptionalLeave,Dept FROM admins WHERE Dept = '".$dept."'";
 	if($conn->query($sql2) == TRUE)
 		{
 			$result2 = $conn->query($sql2);
@@ -16,7 +16,7 @@ function update_leaves($user,$dept)
 							$setearnleave = $row2["SetEarnLeave"];
 							$setcasualleave = $row2["SetCasualLeave"];
 							$setcommuteleave = $row2["SetCommutionLeave"];
-							$setcompassionateleave = $row2["SetCompassionateLeave"];
+							$setoptionalleave = $row2["SetOptionalLeave"];
 							$setmaternityleave = $row2["SetMaternityLeave"];
 							$setpaternityleave = $row2["SetPaternityLeave"];
 							$setstudyleave = $row2["SetStudyLeave"];
@@ -63,10 +63,10 @@ function update_leaves($user,$dept)
 					$studyleave = $setstudyleave;
 					$maternityleave = $matleave;
 					$commuteleave = $setcommuteleave;
-					$compassionateleave = $setcompassionateleave;
+					$optionalleave = $setoptionalleave;
 					$nursingleave = $setnursingleave;
 					
-					$sql2 = "UPDATE employees SET EarnLeave = '".$earnleave."',SickLeave = '".$sickleave."',CasualLeave = '".$casualleave."', CommutionLeave = '".$commuteleave."', CompassionateLeave = '".$compassionateleave."', MaternityLeave = '".$maternityleave."', NursingLeave = '".$nursingleave."',StudyLeave = '".$studyleave."', UpdateStatus = '".date("Y-m-d")."' WHERE id = '".$row["id"]."'";
+					$sql2 = "UPDATE employees SET EarnLeave = '".$earnleave."',SickLeave = '".$sickleave."',CasualLeave = '".$casualleave."', CommutionLeave = '".$commuteleave."', OptionalLeave = '".$optionalleave."', MaternityLeave = '".$maternityleave."', NursingLeave = '".$nursingleave."',StudyLeave = '".$studyleave."', UpdateStatus = '".date("Y-m-d")."' WHERE id = '".$row["id"]."'";
 					if($conn->query($sql2) == TRUE)
 						{
 						return true;
@@ -97,9 +97,9 @@ function update_leaves($user,$dept)
 					$studyleave = $setstudyleave;
 					$maternityleave = $matleave;
 					$commuteleave = $setcommuteleave;
-					$compassionateleave = $setcompassionateleave;
+					$optionalleave = $setoptionalleave;
 					$nursingleave = $setnursingleave;
-					$sql2 = "UPDATE employees SET EarnLeave = '".$earnleave."',SickLeave = '".$sickleave."',CasualLeave = '".$casualleave."', CommuteLeave = '".$commuteleave."', CompassionateLeave = '".$compassionateleave."', MaternityLeave = '".$maternityleave."', NursingLeave = '".$nursingleave."',StudyLeave = '".$studyleave."',UpdateStatus = '".date("Y-m-d")."' WHERE id = '".$row["id"]."'";
+					$sql2 = "UPDATE employees SET EarnLeave = '".$earnleave."',SickLeave = '".$sickleave."',CasualLeave = '".$casualleave."', CommuteLeave = '".$commuteleave."', OptionalLeave = '".$optionalleave."', MaternityLeave = '".$maternityleave."', NursingLeave = '".$nursingleave."',StudyLeave = '".$studyleave."',UpdateStatus = '".date("Y-m-d")."' WHERE id = '".$row["id"]."'";
 					if($conn->query($sql2) == TRUE)
 						{
 						return true;

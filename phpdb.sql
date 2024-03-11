@@ -36,7 +36,7 @@ CREATE TABLE `admins` (
   `SetCasualLeave` int(11) NOT NULL DEFAULT 15,
  `SetEarnLeave` int(11) NOT NULL DEFAULT 30,
   `SetCommutionLeave` int(11) NOT NULL DEFAULT 30,
-  `SetCompassionateLeave` int(11) NOT NULL DEFAULT 30,
+  `SetOptionalLeave` int(11) NOT NULL DEFAULT 30,
   `SetNursingLeave` int(11) NOT NULL DEFAULT 30,
   `SetStudyLeave` int(11) NOT NULL DEFAULT 30,
   `SetMaternityLeave` int(11) NOT NULL DEFAULT 30,
@@ -48,7 +48,7 @@ CREATE TABLE `admins` (
 -- Dumping data for table `admins`
 --
 
-INSERT INTO `admins` (`id`, `username`, `password`, `Dept`, `SetSickLeave`, `SetCasualLeave`, `SetEarnLeave`,`SetCommutionLeave`,`SetCompassionateLeave`,`SetNursingLeave`,`SetStudyLeave`,`SetMaternityLeave`,`SetPaternityLeave`) VALUES
+INSERT INTO `admins` (`id`, `username`, `password`, `Dept`, `SetSickLeave`, `SetCasualLeave`, `SetEarnLeave`,`SetCommutionLeave`,`SetOptionalLeave`,`SetNursingLeave`,`SetStudyLeave`,`SetMaternityLeave`,`SetPaternityLeave`) VALUES
 (1, 'cse_hod', 'cse_hod', 'CSE', 20, 25, 10),
 (2, 'et&t_hod', 'et&t_hod', 'ET&T', 11, 11, 11),
 (3, 'mech_hod', 'mech_hod', 'MECH', 15, 10, 30),
@@ -75,7 +75,7 @@ CREATE TABLE `employees` (
   `SickLeave` int(5) UNSIGNED NOT NULL,
   `CasualLeave` int(5) UNSIGNED NOT NULL,
   `CommutionLeave` int(5) UNSIGNED NOT NULL,
-  `CompassionateLeave` int(5) UNSIGNED NOT NULL,
+  `OptionalLeave` int(5) UNSIGNED NOT NULL,
   `NursingLeave` int(5) UNSIGNED NOT NULL,
   `StudyLeave` int(5) UNSIGNED NOT NULL,
   `MaternityLeave` int(5) UNSIGNED NOT NULL,

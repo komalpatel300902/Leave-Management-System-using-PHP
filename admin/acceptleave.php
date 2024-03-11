@@ -33,7 +33,7 @@ if(isset($_SESSION['adminuser']))
 		while($row = $result->fetch_assoc())
 			{
 			$leavedays = $row["LeaveDays"];
-			$sql2 = "SELECT id,EarnLeave,SickLeave,CasualLeave,CommutionLeave,CompassionateLeave,NursingLeave,StudyLeave,MaternityLeave,EmpEmail FROM employees WHERE id = '".$empid."'";
+			$sql2 = "SELECT id,EarnLeave,SickLeave,CasualLeave,CommutionLeave,optionalleave,NursingLeave,StudyLeave,MaternityLeave,EmpEmail FROM employees WHERE id = '".$empid."'";
 			$result2 = $conn->query($sql2);
 			if($result2->num_rows > 0)
 				{
@@ -47,8 +47,8 @@ if(isset($_SESSION['adminuser']))
 					$diff3 = $casualleave-$leavedays;
 					$commutionleave = $row2["CommutionLeave"];
 					$diff4 = $commutionleave-$leavedays;
-					$compassionateleave = $row2["CompassionateLeave"];
-					$diff5 = $compassionateleave-$leavedays;
+					$optionalleave = $row2["optionalleave"];
+					$diff5 = $optionalleave-$leavedays;
 					$nursingleave = $row2["NursingLeave"];
 					$diff6 = $nursingleave-$leavedays;
 					$studyleave = $row2["StudyLeave"];
@@ -85,12 +85,12 @@ if(isset($_SESSION['adminuser']))
 						else
 							$sql3 = "UPDATE employees SET CommutionLeave = '".$diff4."' WHERE id = '".$empid."'";
 						}
-					else if($row["LeaveType"] == "Copassionate Leave")
+					else if($row["LeaveType"] == "Optional Leave")
 						{
 						if($diff3 < 0)
 							echo "Processing Error !";
 						else
-							$sql3 = "UPDATE employees SET CopassionateLeave = '".$diff5."' WHERE id = '".$empid."'";
+							$sql3 = "UPDATE employees SET optionalleave = '".$diff5."' WHERE id = '".$empid."'";
 						}
 					else if($row["LeaveType"] == "Nursing Leave")
 						{

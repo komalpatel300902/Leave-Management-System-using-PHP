@@ -102,7 +102,7 @@ if($conn->query($sql2) == TRUE)
 						$commutionleave = $row2['SetCommutionLeave'];
 						$nursingleave = $row2['SetNursingLeave'];
 						$studyleave = $row2['SetStudyLeave'];
-						$compassionateleave = $row2['SetCompassionateLeave'];
+						$optionalleave = $row2['SetOptionalLeave'];
 						$maternityleave = $row2['SetMaternityLeave'];
 						$paternityleave = $row2['SetPaternityLeave'];
 						$hodmailid = $row2['email'];
@@ -119,13 +119,13 @@ else
 		$pw = $uname;
 		$msgforuser = "";
 		if($gender === "Female"){
-			$sql = "INSERT INTO joining_request (empid,UserName,EmpPass,EmpName,Dept,EarnLeave,SickLeave,CasualLeave,CommutionLeave,NursingLeave,StudyLeave,CompassionateLeave,MaternityLeave,EmpEmail,DateOfJoin,Designation,EmpType,EmpFee,DateOfBirth,gender) 
-			VALUES "."('".$employee_id."','".$uname."','".$pw."','".$empname."','".$dept."','".$earnleave."','".$sickleave."','".$casualleave."','".$commutionleave."','".$nursingleave."','".$studyleave."','".$compassionateleave."','".$maternityleave."','".$mailid."','".$doj."','".$designation."','".$emptype."','".$empfee."','".$dob."','".$gender."')";
+			$sql = "INSERT INTO joining_request (empid,UserName,EmpPass,EmpName,Dept,EarnLeave,SickLeave,CasualLeave,CommutionLeave,NursingLeave,StudyLeave,OptionalLeave,MaternityLeave,EmpEmail,DateOfJoin,Designation,EmpType,EmpFee,DateOfBirth,gender) 
+			VALUES "."('".$employee_id."','".$uname."','".$pw."','".$empname."','".$dept."','".$earnleave."','".$sickleave."','".$casualleave."','".$commutionleave."','".$nursingleave."','".$studyleave."','".$optionalleave."','".$maternityleave."','".$mailid."','".$doj."','".$designation."','".$emptype."','".$empfee."','".$dob."','".$gender."')";
 			$msgforuser = "Request Successfully Sent !";
 		}
 		else if($gender === "Male"){
-			$sql = "INSERT INTO joining_request (empid,UserName,EmpPass,EmpName,Dept,EarnLeave,SickLeave,CasualLeave,CommutionLeave,NursingLeave,StudyLeave,CompassionateLeave,MaternityLeave,EmpEmail,DateOfJoin,Designation,EmpType,EmpFee,DateOfBirth,gender) 
-			VALUES "."('".$employee_id."','".$uname."','".$pw."','".$empname."','".$dept."','".$earnleave."','".$sickleave."','".$casualleave."','".$commutionleave."','".$nursingleave."','".$studyleave."','".$compassionateleave."','".$paternityleave."','".$mailid."','".$doj."','".$designation."','".$emptype."','".$empfee."','".$dob."','".$gender."')";
+			$sql = "INSERT INTO joining_request (empid,UserName,EmpPass,EmpName,Dept,EarnLeave,SickLeave,CasualLeave,CommutionLeave,NursingLeave,StudyLeave,OptionalLeave,MaternityLeave,EmpEmail,DateOfJoin,Designation,EmpType,EmpFee,DateOfBirth,gender) 
+			VALUES "."('".$employee_id."','".$uname."','".$pw."','".$empname."','".$dept."','".$earnleave."','".$sickleave."','".$casualleave."','".$commutionleave."','".$nursingleave."','".$studyleave."','".$optionalleave."','".$paternityleave."','".$mailid."','".$doj."','".$designation."','".$emptype."','".$empfee."','".$dob."','".$gender."')";
 			$msgforuser = "Request Successfully Sent !";
 		}
 		if ($conn->query($sql) === TRUE) {

@@ -33,7 +33,7 @@ if(isset($_SESSION['principal']))
 		while($row = $result->fetch_assoc())
 			{
 			$leavedays = $row["LeaveDays"];
-			$sql2 = "SELECT id,EarnLeave,SickLeave,CasualLeave,CommutionLeave,CompassionateLeave,NursingLeave,StudyLeave,MaternityLeave,EmpEmail FROM employees WHERE id = '".$empid."'";
+			$sql2 = "SELECT id,EarnLeave,SickLeave,CasualLeave,CommutionLeave,OptionalLeave,NursingLeave,StudyLeave,MaternityLeave,EmpEmail FROM employees WHERE id = '".$empid."'";
 			$result2 = $conn->query($sql2);
 			if($result2->num_rows > 0)
 				{
@@ -47,8 +47,8 @@ if(isset($_SESSION['principal']))
 					$diff3 = $casualleave-$leavedays;
 					$commutionleave = $row2["CommutionLeave"];
 					$diff4 = $commutionleave-$leavedays;
-					$compassionateleave = $row2["CompassionateLeave"];
-					$diff5 = $compassionateleave-$leavedays;
+					$Optionalleave = $row2["OptionalLeave"];
+					$diff5 = $Optionalleave-$leavedays;
 					$nursingleave = $row2["NursingLeave"];
 					$diff6 = $nursingleave-$leavedays;
 					$studyleave = $row2["StudyLeave"];

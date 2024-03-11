@@ -24,6 +24,7 @@ if(isset($user))
 	$endleavedate = $_POST['endleaveyear']."-".$_POST['endleavemonth']."-".$_POST['endleavedate'];
 	$date = date_create($leavedate);
 	$duration = $leavedays." days";
+	echo $duration;
 	$interval = date_interval_create_from_date_string($duration);
 	$enddate = date_add($date,$interval);
 	$end = date_format($enddate,"Y-m-d");
@@ -35,34 +36,35 @@ if(isset($user))
 
 
 	$rownumber = $_POST['rownumber'];
-	$n = 0;
-	for($i = 0; $i < $rownumber; $i++){
-		$value1 = $_POST['value'.++$n];
-		$value2 = $_POST['value'.++$n];
-		$value3 = $_POST['value'.++$n];
-		$value4 = $_POST['value'.++$n];
-		$value5 = $_POST['value'.++$n];
-		$value6 = $_POST['value'.++$n];
-		$value7 = $_POST['value'.++$n];
-		$query = "INSERT INTO engagementrecord VALUES('".$value1."','".$value2."','".$value3."','".$value4."','".$value5."','".$value6."','".$value7."')";
-		mysqli_query($conn, $query);
+	
+	// $n = 0;
+	// for($i = 0; $i < $rownumber; $i++){
+	// 	$value1 = $_POST['value'.++$n];
+	// 	$value2 = $_POST['value'.++$n];
+	// 	$value3 = $_POST['value'.++$n];
+	// 	$value4 = $_POST['value'.++$n];
+	// 	$value5 = $_POST['value'.++$n];
+	// 	$value6 = $_POST['value'.++$n];
+	// 	$value7 = $_POST['value'.++$n];
+	// 	$query = "INSERT INTO engagementrecord VALUES('".$value1."','".$value2."','".$value3."','".$value4."','".$value5."','".$value6."','".$value7."')";
+	// 	mysqli_query($conn, $query);
 
-	}
+	// }
 	
 	$leavereason = $_POST['leavereason'];
 	$dept = $_POST['dept'];
 
-	$target_dir = "applications/";
-	$target_file = $target_dir.basename($_FILES['application']['name']);
+	// $target_dir = "applications/";
+	// $target_file = $target_dir.basename($_FILES['application']['name']);
 
-	if (move_uploaded_file($_FILES['application']['tmp_name'], $target_file))
-		{
-		$target_location="applications/".basename($_FILES['application']["name"]);
-		$ext = pathinfo($target_location, PATHINFO_EXTENSION);
-		$new="applications/".$_SESSION['user'].$leavedate.".".$ext;
-		rename($target_location,$new);
-		// header('location:home.php');
-		}
+	// if (move_uploaded_file($_FILES['application']['tmp_name'], $target_file))
+	// 	{
+	// 	$target_location="applications/".basename($_FILES['application']["name"]);
+	// 	$ext = pathinfo($target_location, PATHINFO_EXTENSION);
+	// 	$new="applications/".$_SESSION['user'].$leavedate.".".$ext;
+	// 	rename($target_location,$new);
+	// 	// header('location:home.php');
+	// 	}
 
 
 		if(!empty($leavedays)){
@@ -73,8 +75,8 @@ if(isset($user))
 				if ($result->num_rows > 0) {
 					while($row = $result->fetch_assoc()) {
 						if($row["UserName"] == $user){
-							$leaves = array("Sick Leave","Earn Leave","Casual Leave", "Maternity Leave","Commution Leave","Study Leave","Compassionate Leave","Nursing Leave");
-							$lve = array("SickLeave","EarnLeave","CasualLeave", "MaternityLeave","CommutionLeave","StudyLeave","CompassionateLeave","NursingLeave");
+							$leaves = array("Sick Leave","Earn Leave","Casual Leave", "Maternity Leave","Commution Leave","Study Leave","Optional Leave","Nursing Leave");
+							$lve = array("SickLeave","EarnLeave","CasualLeave", "MaternityLeave","CommutionLeave","StudyLeave","optionalleave","NursingLeave");
 							if($row['gender'] == "Female"){
 								$max_leave_day_at_a_time = array(10,5,2,180,3,30,5,7);
 							}
@@ -83,7 +85,7 @@ if(isset($user))
 							}
 							for ($x = 0; $x < 8; $x++){
 								if($leavetype === $leaves[$x]){
-									if(($leavedays <= $row[$lve[$x]]) && $leavedays < $max_leave_day_at_a_time[$x]){
+									if(($leavedays <= $row[$lve[$x]]) && ($leavedays <= $max_leave_day_at_a_time[$x] )){
 										$empname = $row["EmpName"];
 										$to = $row["EmpEmail"];
 										$name = "leaves/".$user.$leavedate.$leavetype.$end.'.pdf';
@@ -120,7 +122,7 @@ if(isset($user))
 									}
 									else
 									{
-									header('location:request_leave.php?err='.urlencode("You cannot ask for ".$leaves[$x]." more than that of your account ! "));
+									header('location:request_leave.php?err='.urlencode("You cannot ask for ".$leaves[$x].$leavedays.$row[$lve[$x]]." more than that of your account ! "));
 									}
 								}
 							}
@@ -155,6 +157,7 @@ if(isset($user))
 					<td>'.$_POST['value'.++$n].'</td>
 					</tr>';
 				}
+				
 				$engineering = array("Computer Science and Engineering ","Electronics and Telecommunication Engineering", "Civil Engineering", "Mechanical Engineering","Electronics and Electrical Engineering");
 				$eng = array("CSE","ET&T","CIVIL","MECH","EEE");
 				$department = "";
@@ -175,6 +178,15 @@ if(isset($user))
 							<th style = "max-width: 60px;">Engage by faculty Name</th></tr>
 							'.$strm.'</table>';
 				}
+				echo $strm;
+				
+				
+				$time_stamp_leavedate = strtotime($leavedate);
+				$time_stamp_endleavedate = strtotime($endleavedate);
+				$proper_format_leavedate = date('d-m-Y',$time_stamp_leavedate);
+				$proper_format_endleavedate = date('d-m-Y',$time_stamp_endleavedate);
+				echo $proper_format_endleavedate;
+				echo $proper_format_leavedate;
 				$pdf_content='
 							<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 							<html xmlns="http://www.w3.org/1999/xhtml">
@@ -206,7 +218,7 @@ if(isset($user))
 							Respected Sir,<br><br>
 
 							With due Respect I want to inform you that I Mr/Mrs '.$empname.' would like to take leave of '.$leavedays.'
-							days from '.$leavedate.' to '.$endleavedate.' because '.$leavereason.'.<br>
+							days from '.$proper_format_leavedate.' to '.$proper_format_endleavedate.' because '.$leavereason.'.<br>
 
 							Kindly grant me leave of absense. '.$strm.'					
 									
@@ -220,28 +232,28 @@ if(isset($user))
 								Name of the Faculty : Mr/Mrs '.$empname.'<br>
 								Department '.$dept.'<br>
 								</div>
-							</div></body></html>'
-							;
-							// $name = $user.$leavedate.$leavetype.$end.'.pdf';
-							// $reportPDF = createPDF($pdf_content, $name);
-
-							$dompdf->loadHtml($pdf_content); 
-							
-							// (Optional) Setup the paper size and orientation 
-							$dompdf->setPaper('A4', 'portrait'); 
-							
-							// Render the HTML as PDF 
-							$dompdf->render(); 
-							
-							// Output the generated PDF (1 = download and 0 = preview) 
-							// $dompdf->stream("codexworld", array("Attachment" => 0));
-							$name = "leaves/".$user.$leavedate.$leavetype.$end.'.pdf';
-							file_put_contents($name,$dompdf->output());
-							$conn->close();
-							echo $hodmsg."\n".$teachermsg;
-							echo "<script>
-								window.location.href='my_leaves.php';
-								</script>";
+							</div></body></html>';
+				// $name = $user.$leavedate.$leavetype.$end.'.pdf';
+				// $reportPDF = createPDF($pdf_content, $name);
+				
+				$dompdf->loadHtml($pdf_content); 
+				
+				// (Optional) Setup the paper size and orientation 
+				$dompdf->setPaper('A4', 'portrait'); 
+				
+				// Render the HTML as PDF 
+				$dompdf->render(); 
+				
+				// Output the generated PDF (1 = download and 0 = preview) 
+				// $dompdf->stream("codexworld", array("Attachment" => 0));
+				$name = "leaves/".$user.$leavedate.$leavetype.$end.'.pdf';
+				file_put_contents($name,$dompdf->output());
+				$conn->close();
+				
+				echo $hodmsg."\n".$teachermsg;
+				echo "<script>
+					window.location.href='my_leaves.php';
+					</script>";	
 			}
 			else
 				{
