@@ -82,6 +82,21 @@ if(isset($_SESSION['adminuser']))
 		{
 		header('location:index.php?err='.urlencode('Please Login for Accessing this page'));
 		}
+	
+	echo "<script>
+	function daysdifference(firstDate, secondDate){  
+		var startDay = new Date(firstDate);  
+		var endDay = new Date(secondDate);  
+	
+		
+		var millisBetween = startDay.getTime() - endDay.getTime();  
+	
+	  
+		var days = millisBetween / (1000 * 3600 * 24);       
+		return Math.round(Math.abs(days));  
+	} 
+	
+	";
 ?>
 
 <script type="text/javascript">

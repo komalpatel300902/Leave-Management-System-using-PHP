@@ -135,7 +135,9 @@ function data_printer($dates,$teacher_name){
                     $teacher_subject_ws = get_worksheet($teacher_subject);
                     $subjects = subject_teacher_mapper($teacher_name,$teacher_subject_ws);
                     for ($subject = 0; $subject < count($subjects); $subject++){
+
                         $sub = $subjects[$subject];
+                
                         $periods = period_finder_for_engagement($sub,$day,$time_table_ws);
                         for($period = 0; $period < count($periods); $period++){
                             $period_number = $periods[$period];

@@ -1,7 +1,9 @@
 <title>::Leave Management::</title>
 <?php
-session_start();
 include 'connect.php';
+echo "<script type = 'text/javascript' src = 'JQuery.js'></script>";
+session_start();
+
 if(isset($_SESSION['user']))
 	{
 	echo "<link rel='stylesheet' type='text/css' href='style.css'>";
@@ -99,7 +101,7 @@ if(isset($_SESSION['user']))
 		
 		echo "<tr><th> * Starting Date : </th>
 		<td>
-		<select name = 'leavedate' id = 'leavedate' class = 'textbox shadow selected' >
+		<select name = 'leavedate' id = 'leavedate' onclick='daysdifference()' class = 'textbox shadow selected' >
 			<option value = '01'>1</option>
 			<option value = '02'>2</option>
 			<option value = '03'>3</option>
@@ -132,7 +134,7 @@ if(isset($_SESSION['user']))
 			<option value = '30'>30</option>
 			<option value = '31'>31</option>
 		</select>
-		<select name = 'leavemonth' id = 'leavemonth' class = 'textbox shadow selected'>
+		<select name = 'leavemonth' id = 'leavemonth' onclick='daysdifference()' class = 'textbox shadow selected'>
 			<option value = '01'>1</option>
 			<option value = '02'>2</option>
 			<option value = '03'>3</option>
@@ -146,7 +148,7 @@ if(isset($_SESSION['user']))
 			<option value = '11'>11</option>
 			<option value = '12'>12</option>
 		</select>
-		<select name = 'leaveyear' id = 'leaveyear' class = 'textbox shadow selected'>
+		<select name = 'leaveyear' id = 'leaveyear' onclick='daysdifference()' class = 'textbox shadow selected'>
 			<option value = '".date("Y")."'>".date("Y")."</option>
 			<option value = '".(date("Y")+1)."'>".(date("Y")+1)."</option>
 		</select>
@@ -154,7 +156,7 @@ if(isset($_SESSION['user']))
 		</tr>";
 		echo "<tr><th> * End Date : </th>
 		<td>
-		<select name = 'endleavedate' id = 'endleavedate' class = 'end textbox shadow selected' >
+		<select name = 'endleavedate' id = 'endleavedate' onclick='daysdifference()' class = 'end textbox shadow selected' >
 			<option value = '01'>1</option>
 			<option value = '02'>2</option>
 			<option value = '03'>3</option>
@@ -187,7 +189,7 @@ if(isset($_SESSION['user']))
 			<option value = '30'>30</option>
 			<option value = '31'>31</option>
 		</select>
-		<select name = 'endleavemonth' id = 'endleavemonth' class = 'end textbox shadow selected'>
+		<select name = 'endleavemonth' id = 'endleavemonth' onclick='daysdifference()' class = 'end textbox shadow selected'>
 			<option value = '01'>1</option>
 			<option value = '02'>2</option>
 			<option value = '03'>3</option>
@@ -201,20 +203,19 @@ if(isset($_SESSION['user']))
 			<option value = '11'>11</option>
 			<option value = '12'>12</option>
 		</select>
-		<select name = 'endleaveyear' id = 'endleaveyear' class = 'end textbox shadow selected'>
+		<select name = 'endleaveyear' id = 'endleaveyear' onclick='daysdifference()' class = 'end textbox shadow selected'>
 			<option value = '".date("Y")."'>".date("Y")."</option>
 			<option value = '".(date("Y")+1)."'>".(date("Y")+1)."</option>
 		</select>
 		</td>
 		</tr>";
-
-		echo "<tr><th> * No Of Leave Days : </th><td><input type = 'number' min = '1' name = 'leavedays' class = 'textbox shadow selected' step = '1'></td></tr>";
+	
+		echo "<tr><th> * No Of Leave Days : </th><td><input type = 'number' min = '1' name = 'leavedays' id = 'leavedays' class = 'textbox shadow selected' step = '1'></td></tr>";
 		echo "<tr><th> * Resaon For Leave : </th><td><input type = 'text' name = 'leavereason' class = 'textbox shadow selected'></td></tr>";
 		echo "<input type = 'file' accept = '.doc , .pdf , .docx' name = 'application' id = 'application'>";
 		echo "</table>";
 		
-		echo "<button type = 'submit' class = 'login-button shadow' >Next</button>";
-					
+		echo "<button type = 'submit' class = 'login-button shadow' >Next</button>";	
 
 
 
@@ -226,6 +227,33 @@ if(isset($_SESSION['user']))
 		{
 		header('location:index.php?err='.urlencode('Please Login for Accessing this page'));
 		}
+
+	echo "<script>
+	
+	function daysdifference(){  
+		var firstDate = $('#leaveyear').val() +'/'+$('#leavemonth').val()+'/'+$('#leavedate').val();
+		var secondDate = $('#endleaveyear').val() +'/'+$('#endleavemonth').val()+'/'+$('#endleavedate').val();
+		var startDay = new Date(firstDate);  
+		var endDay = new Date(secondDate);  
+	
+		
+		var millisBetween = startDay.getTime() - endDay.getTime();  
+	
+	  
+		var days = millisBetween / (1000 * 3600 * 24);       
+		$('#leavedays').val(Math.round(Math.abs(days))+1);
+		console.log( Math.round(Math.abs(days))+1); 
+		console.log($('#leaveyear option:selected').val());
+	} 
+
+	$('#leaveyear').on('click',daysdifference());
+	$('#leavemonth').on('click',daysdifference());
+	$('#leavedate').on('click',daysdifference());
+	$('#endleaveyear').on('click',daysdifference());
+	$('#endleavemonth').on('click',daysdifference());
+	$('#endleavedate').on('click',daysdifference());
+
+	</script>"
 ?>
 
 <script type="text/javascript">

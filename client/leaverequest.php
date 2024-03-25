@@ -37,6 +37,7 @@ if(isset($_SESSION['user']))
 			echo "<input type = 'hidden' name = 'endleavemonth' value = '".$_POST["endleavemonth"]."'>";
 			echo "<input type = 'hidden' name = 'endleavedate' value = '".$_POST["endleavedate"]."'>";
 			echo "<input type = 'hidden' name = 'leavereason' value = '".$_POST["leavereason"]."'>";
+			echo $_POST["leavedays"];
 			$empname = $row["EmpName"];
 			$leavedate = $_POST['leaveyear']."/".$_POST['leavemonth']."/".$_POST['leavedate'];
 			$endleavedate = $_POST['endleaveyear']."/".$_POST['endleavemonth']."/".$_POST['endleavedate'];
